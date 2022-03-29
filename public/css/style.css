@@ -1,0 +1,10 @@
+
+header {
+    display: flex; justify-content: space-between;
+    align-items: center;
+}
+
+body {
+    width:60%;
+    margin: 0 auto;
+}
