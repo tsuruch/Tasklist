@@ -5,18 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
 use App\Models\Task;
+use App\Models\User;
+use Illuminate\Support\Facades\Cookie;
 
 class TaskController extends Controller
 
 {
     //
-    public function index() {
+    public function __construct()
+    {
+        $this->middleware('authuser');
+    }
+
+    public function index(User $user) {
         $tasks = Task::latest()->get();
-
-
         return view('index')
         ->with(['tasks' => $tasks]);
     }
+
+    public function alltasks() {
+        $tasks = Task::latest()->get();
+
+        return view('tasks.alltasks')
+        ->with(['tasks' => $tasks]);
+    }
+
 
     public function show(Task $task) {
         return view('tasks.show')

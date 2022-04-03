@@ -2,27 +2,24 @@
     <x-slot name="title">
         Home
     </x-slot>
-    <table>
+    <h3>My Task</h3>
+    <table class="ta1">
         <tr>
-            <th>タスク名</th>
-            <th>登録日</th>
-            <th>納品日</th>
-            <th>工程1</th>
-            <th>工程2</th>
-            <th>工程3</th>
-            <th>工程4</th>
-            <th>補足事項</th>
+            <th class="tamidashi">タスク名</th>
+            <th class="tamidashi">納品日</th>
+            <th class="tamidashi">工程1</th>
+            <th class="tamidashi">工程2</th>
+            <th class="tamidashi">工程3</th>
+            <th class="tamidashi">工程4</th>
         </tr>
         @foreach ($tasks as $task)
         <tr>
-            <th><a href="{{ route('tasks.show', $task) }}">{{ $task->name }}</a></th>
-            <th>いらんかも</th>
-            <th>{{ $task->deadline }}</th>
-            <th>1</th>
-            <th>0</th>
-            <th>0</th>
-            <th>0</th>
-            <th>補足事項</th>
+            <td><a href="{{ route('tasks.show', $task) }}">{{ $task->name }}</a></td>
+            <td>{{ $task->deadline }}</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
         </tr>
         @endforeach
     </table>

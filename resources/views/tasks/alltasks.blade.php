@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot name="title">
-        {{ $task->name }}
+        All Tasks
     </x-slot>
     <table class="ta1">
         <tr>
@@ -11,24 +11,15 @@
             <th class="tamidashi">工程3</th>
             <th class="tamidashi">工程4</th>
         </tr>
+        @foreach ($tasks as $task)
         <tr>
-            <td>{{ $task->name }}
-                <a href="{{ route('tasks.edit', $task) }}">更新</a>
-            </td>
+            <td><a href="{{ route('tasks.show', $task) }}">{{ $task->name }}</a></td>
             <td>{{ $task->deadline }}</td>
             <td>1</td>
             <td>0</td>
             <td>0</td>
             <td>0</td>
         </tr>
+        @endforeach
     </table>
-
-    <form action="{{ route('tasks.destroy', $task) }}" method="post">
-        @csrf
-        @method('DELETE')
-        <div class="c">
-            <input type="submit" value="削除" class="btn" />
-        </div>
-    </form>
-    <h3>詳細</h3>
 </x-layout>
