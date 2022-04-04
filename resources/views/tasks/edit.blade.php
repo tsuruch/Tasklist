@@ -23,6 +23,27 @@
                     @enderror
                 </td>
             </tr>
+            <tr>
+                <th>工程1</th>
+                <td><input type="text" name="process1" value="{{ old('process1', $task->process1) }}">
+                </td>
+            </tr>
+            <tr>
+                <th>工程2</th>
+                <td><input type="text" name="process2" value="{{ old('process2', $task->process2) }}">
+                </td>
+            </tr>
+            <tr>
+                <th>工程3</th>
+                <td><input type="text" name="process3" value="{{ old('process3', $task->process3) }}">
+                </td>
+            </tr>
+            <tr>
+                <th>工程4</th>
+                <td><input type="text" name="process4" value="{{ old('process4', $task->process4) }}">
+                </td>
+            </tr>
+
         </table>
         <div class="c">
             <input type="submit" value="送信する" class="btn" />

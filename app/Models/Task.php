@@ -15,4 +15,9 @@ class Task extends Model
         'deadline',
     ];
 
+    public function mytask() {
+        return $this->hasMany(myTask::class);
+    }
+
+
 }

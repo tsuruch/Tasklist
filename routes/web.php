@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\MytaskController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -55,4 +56,10 @@ Route::patch('/tasks/{task}/update', [TaskController::class, 'update'])
 Route::delete('/tasks/{task}/destroy', [TaskController::class, 'destroy'])
     ->name('tasks.destroy')
     ->where('task', '[0-9]+');
+
+Route::post('/mytasks/{task}/add', [MytaskController::class, 'add'])
+    ->name('mytasks.add')
+    ->where('task', '[0-9]+');
+
+
 

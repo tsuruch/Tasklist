@@ -15,10 +15,10 @@
         <tr>
             <td><a href="{{ route('tasks.show', $task) }}">{{ $task->name }}</a></td>
             <td>{{ $task->deadline }}</td>
-            <td>1</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
+            <td>{{ $task->process1 }}</td>
+            <td>{{ $task->process2 }}</td>
+            <td>{{ $task->process3 }}</td>
+            <td>{{ $task->process4 }}</td>
         </tr>
         @endforeach
     </table>

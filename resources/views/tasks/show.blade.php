@@ -16,12 +16,21 @@
                 <a href="{{ route('tasks.edit', $task) }}">更新</a>
             </td>
             <td>{{ $task->deadline }}</td>
-            <td>1</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
+            <td>{{ $task->process1 }}</td>
+            <td>{{ $task->process2 }}</td>
+            <td>{{ $task->process3 }}</td>
+            <td>{{ $task->process4 }}</td>
         </tr>
     </table>
+
+    <form action="{{ route('mytasks.add', $task) }}" method="post">
+        @csrf
+        <div class="c">
+            <input type="submit" value="My Taskに追加" class="btn" />
+        </div>
+        <input type="hidden" name="user_id" value="{{ session('user_id') }}">
+    </form>
+
 
     <form action="{{ route('tasks.destroy', $task) }}" method="post">
         @csrf

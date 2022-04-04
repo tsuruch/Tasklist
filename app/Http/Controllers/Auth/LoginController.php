@@ -36,11 +36,12 @@ class LoginController extends Controller
             $user->api_token = Str::random(60);
             $user->save();
 
+            //sessionにトークンと名前保存する。名前は表示するため。トークンはログイン認証をするため。
             session(['api_token' => $user->api_token,
                     'username' => $user->username,
+                    'user_id' => $user->id,
         ]);
 
-            //loginが成功するとtokenと共に情報をjsonで返す。
             return redirect()->route('tasks.index');
         }
 

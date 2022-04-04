@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
 use App\Models\Task;
+use App\Models\Mytask;
 use App\Models\User;
 use Illuminate\Support\Facades\Cookie;
 
@@ -17,10 +18,10 @@ class TaskController extends Controller
         $this->middleware('authuser');
     }
 
-    public function index(User $user) {
-        $tasks = Task::latest()->get();
+    public function index() {
+        $mytasks = Mytask::where('user_id', session('user_id'))->get();
         return view('index')
-        ->with(['tasks' => $tasks]);
+        ->with(['mytasks' => $mytasks]);
     }
 
     public function alltasks() {
@@ -61,6 +62,10 @@ class TaskController extends Controller
     public function update(TaskRequest $request, Task $task) {
         $task->name = $request->name;
         $task->deadline = $request->deadline;
+        $task->process1 = $request->process1;
+        $task->process2 = $request->process2;
+        $task->process3 = $request->process3;
+        $task->process4 = $request->process4;
         $task->save();
 
         return redirect()->route('tasks.show', $task);

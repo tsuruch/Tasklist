@@ -12,14 +12,14 @@
             <th class="tamidashi">工程3</th>
             <th class="tamidashi">工程4</th>
         </tr>
-        @foreach ($tasks as $task)
+        @foreach ($mytasks as $mytask)
         <tr>
-            <td><a href="{{ route('tasks.show', $task) }}">{{ $task->name }}</a></td>
-            <td>{{ $task->deadline }}</td>
-            <td>1</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
+            <td><a href="{{ route('tasks.show', $mytask->task) }}">{{ $mytask->task->name }}</a></td>
+            <td>{{ $mytask->task->deadline }}</td>
+            <td>{{ $mytask->task->process1 }}</td>
+            <td>{{ $mytask->task->process2 }}</td>
+            <td>{{ $mytask->task->process3 }}</td>
+            <td>{{ $mytask->task->process4 }}</td>
         </tr>
         @endforeach
     </table>

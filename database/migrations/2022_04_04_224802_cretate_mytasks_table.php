@@ -13,15 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        //
+        Schema::create('mytasks', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->date('deadline');
-            $table->string('process1')->nullable();
-            $table->string('process2')->nullable();
-            $table->string('process3')->nullable();
-            $table->string('process4')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('task_id');
             $table->timestamps();
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
+            $table->foreign('task_id')
+            ->references('id')
+            ->on('tasks')
+            ->onDelete('cascade');
+
         });
     }
 
@@ -32,6 +38,5 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
     }
 };
