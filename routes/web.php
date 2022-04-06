@@ -29,11 +29,13 @@ Route::post('/users/login', [LoginController::class, 'login'])
 Route::post('/users/logout', [LoginController::class, 'logout'])
     ->name('users.logout');
 
-
-Route::get('/tasks/alltasks', [TaskController::class, 'alltasks'])
+Route::get('/tasks/alltasks/', [TaskController::class, 'alltasks'])
     ->name('tasks.alltasks');
 
-
+    /*
+Route::get('/tasks/alltasks', [TaskController::class, 'alltasks'])
+    ->name('tasks.alltasks');
+*/
 Route::get('/tasks/{task}', [TaskController::class, 'show'])
     ->name('tasks.show')
     ->where('task', '[0-9]+');
@@ -61,5 +63,8 @@ Route::post('/mytasks/{task}/add', [MytaskController::class, 'add'])
     ->name('mytasks.add')
     ->where('task', '[0-9]+');
 
+Route::delete('/mytasks/{task}/destroy', [MytaskController::class, 'destroy'])
+    ->name('mytasks.destroy')
+    ->where('task', '[0-9]+');
 
 

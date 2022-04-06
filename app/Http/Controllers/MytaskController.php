@@ -16,6 +16,18 @@ class MytaskController extends Controller
         $mytask->user_id = $request->user_id;
         $mytask->save();
 
-        return redirect()->route('tasks.index');
+        return back();
+    }
+
+
+    public function destroy(Request $request, Task $task) {
+        $findtask = Mytask::where('task_id', '=', $task->id)
+                        ->where('user_id', '=', $request->user_id)
+                        ->value('id');
+
+        $mytask = Mytask::find($findtask);
+        $mytask->delete();
+
+        return back();
     }
 }

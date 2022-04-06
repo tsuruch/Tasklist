@@ -23,13 +23,27 @@
         </tr>
     </table>
 
-    <form action="{{ route('mytasks.add', $task) }}" method="post">
-        @csrf
-        <div class="c">
-            <input type="submit" value="My Taskに追加" class="btn" />
-        </div>
-        <input type="hidden" name="user_id" value="{{ session('user_id') }}">
-    </form>
+
+@if (!$mytask_judge)
+<form action="{{ route('mytasks.add', $task) }}" method="post">
+    @csrf
+    <div class="c">
+        <input type="submit" value="My Taskに追加" class="btn" />
+    </div>
+    <input type="hidden" name="user_id" value="{{ session('user_id') }}">
+</form>
+@else
+<form action=" {{ route('mytasks.destroy', $task)}} " method="post">
+    @csrf
+    @method('DELETE')
+
+    <div class="c">
+        <input type="submit" value="My Taskから削除" class="btn" />
+    </div>
+    <input type="hidden" name="user_id" value="{{ session('user_id') }}">
+</form>
+
+@endif
 
 
     <form action="{{ route('tasks.destroy', $task) }}" method="post">
