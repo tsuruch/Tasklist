@@ -7,6 +7,7 @@ use App\Http\Requests\TaskRequest;
 use App\Models\Task;
 use App\Models\Mytask;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Validation\Rules\Exists;
 use PhpParser\Node\Stmt\Foreach_;
@@ -60,8 +61,9 @@ class TaskController extends Controller
     public function show(Task $task) {
         $mytask_judge = Mytask::where('user_id', session('user_id'))
                         ->where('task_id', $task->id)->exists();
+        $comments = Comment::where('task_id', $task->id)->get();
         return view('tasks.show')
-        ->with(['task'=>$task, 'mytask_judge'=>$mytask_judge]);
+        ->with(['task'=>$task, 'mytask_judge'=>$mytask_judge, 'comments'=>$comments]);
     }
 
 
@@ -74,6 +76,7 @@ class TaskController extends Controller
         $task = new Task();
         $task->name = $request->name;
         $task->deadline = $request->deadline;
+        $task->detail = $request->detail;
         $task->save();
 
 

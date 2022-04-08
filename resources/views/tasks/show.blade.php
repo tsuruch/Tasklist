@@ -54,4 +54,35 @@
         </div>
     </form>
     <h3>詳細</h3>
+    <p>{!! nl2br(e($task->detail)) !!}</p>
+    <h3>コメント欄</h3>
+    <form action="{{ route('comments.store', $task) }}" method="post">
+        @csrf
+        <table class="ta1 mb1em">
+            <tr>
+                <th>
+                    <div class="c">
+                    <input type="submit" value="コメント投稿" class="btn" />
+                </div>
+                </th>
+                <td>
+                <textarea id="" cols="30" rows="10" name="comment" class="wl">{{ old('comment') }}</textarea>
+                    @error('comment')
+                    <div class="error">{{ $message }}</div>
+                    @enderror
+                </td>
+            </tr>
+        </table>
+    </form>
+    @foreach ($comments as $comment)
+    <table class="ta1">
+        <tr>
+            <th class="tamidashi">{{ $loop->index+1 }}.{{$comment->created_at }} by {{$comment->user->username}}</th>
+        </tr>
+        <tr>
+            <td>{!! nl2br(e($comment->comment)) !!}</td>
+        </tr>
+        <tr>
+    </table>
+    @endforeach
 </x-layout>

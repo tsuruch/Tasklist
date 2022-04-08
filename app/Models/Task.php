@@ -19,5 +19,10 @@ class Task extends Model
         return $this->hasMany(myTask::class);
     }
 
+    public function comment() {
+        return $this->hasMany(Comment::class);
+    }
+
+
 
 }

@@ -25,7 +25,8 @@ class TaskRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'deadline' => 'required'
+            'deadline' => 'required',
+            'detail' => 'max:5000',
         ];
 
 
@@ -36,7 +37,8 @@ class TaskRequest extends FormRequest
 
         return [
             'name.required' => '案件名をいれてください!!!',
-            'deadline.required' => '納品日をいれてください!!!'
+            'deadline.required' => '納品日をいれてください!!!',
+            'detail.max' => '文字数が多すぎます!!!',
         ];
     }
 }

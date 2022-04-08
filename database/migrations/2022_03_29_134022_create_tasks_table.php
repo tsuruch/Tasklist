@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('process2')->nullable();
             $table->string('process3')->nullable();
             $table->string('process4')->nullable();
+            $table->text('detail')->nullable();
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MytaskController;
+use App\Http\Controllers\CommentController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -66,5 +67,12 @@ Route::post('/mytasks/{task}/add', [MytaskController::class, 'add'])
 Route::delete('/mytasks/{task}/destroy', [MytaskController::class, 'destroy'])
     ->name('mytasks.destroy')
     ->where('task', '[0-9]+');
+
+Route::post('/comments/{task}/store', [CommentController::class, 'store'])
+    ->name('comments.store')
+    ->where('task', '[0-9]+');
+
+
+
 
 
