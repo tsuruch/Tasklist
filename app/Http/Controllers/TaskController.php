@@ -32,7 +32,7 @@ class TaskController extends Controller
         $columns = $request->columns;
         $filtermsg = "";
         if (!isset($filter)) {
-            $tasks = Task::latest()->get();
+            $tasks = Task::orderBy('deadline', 'asc')->get();
         }else{
             $tasks = Task::where(function($query) use($columns, $filter){
                 $i = 0;
@@ -108,5 +108,10 @@ class TaskController extends Controller
     }
 
 
+    public function members() {
+        $users = User::latest()->get();
+        return view('tasks.members')
+                ->with(['users'=>$users]);
+    }
 
 }

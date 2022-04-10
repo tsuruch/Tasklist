@@ -4,6 +4,9 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MytaskController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ChatgroupController;
+use App\Http\Controllers\ChatmanageController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +74,29 @@ Route::delete('/mytasks/{task}/destroy', [MytaskController::class, 'destroy'])
 Route::post('/comments/{task}/store', [CommentController::class, 'store'])
     ->name('comments.store')
     ->where('task', '[0-9]+');
+
+Route::get('/tasks/members', [TaskController::class, 'members'])
+    ->name('tasks.members');
+
+Route::get('/chatgroups/index', [ChatgroupController::class, 'index'])
+    ->name('chatgroups.index');
+
+Route::get('/chatgroups/create', [ChatgroupController::class, 'create'])
+    ->name('chatgroups.create');
+
+Route::post('/chatgroups/store', [ChatgroupController::class, 'store'])
+    ->name('chatgroups.store');
+
+Route::post('/chatmanage/add', [ChatmanageController::class, 'add'])
+    ->name('chatmanage.add');
+
+Route::get('/chatgroups/{group_id}/show', [ChatgroupController::class, 'show'])
+    ->name('chatgroups.show')
+    ->where('group_id', '[0-9]+');
+
+Route::post('/chats/{group_id}/add', [ChatController::class, 'add'])
+    ->name('chats.add')
+    ->where('group_id', '[0-9]+');
 
 
 

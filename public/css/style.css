@@ -776,3 +776,11 @@ body.s-n #sub {display: none;}
 .pc {display: none;}
 
 }
+
+
+/*チェックボックススクロールボックス*/
+.box {
+    width: 150px;
+    height: 200px;
+    overflow-y: scroll;
+}

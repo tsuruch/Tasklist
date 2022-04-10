@@ -17,21 +17,18 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('users')->insert([
-            'username' => 'test1',
-            'email' => 'test1@test',
-            'is_admin' =>true,
-            'password' => bcrypt('password'),
-            'api_token' => Str::random(60),
-        ]);
 
-        DB::table('users')->insert([
-            'username' => 'test2',
-            'email' => 'test2@test',
-            'is_admin' =>true,
-            'password' => bcrypt('password'),
-            'api_token' => Str::random(60),
-        ]);
+        for ($i=1; $i < 31; $i++) {
+            DB::table('users')->insert([
+                'username' => 'test'.$i,
+                'email' => 'test'.$i.'@test',
+                'is_admin' =>true,
+                'password' => bcrypt('password'),
+                'api_token' => Str::random(60),
+            ]);
+
+        }
+
 
     }
 }

@@ -47,7 +47,8 @@ body.is-fixed #contents {padding-top: 0;}
 <li class="current"><a href="{{ route('tasks.index') }}">HOME</a></li>
 <li><a href="{{ route('tasks.alltasks') }}">ALLSCHEDULE</a></li>
 <li><a href="{{ route('tasks.create') }}">TASKREGIST</a></li>
-<li><a href="">MYCHAT</a></li>
+<li><a href="{{ route('chatgroups.index') }}">CHATS</a></li>
+<li><a href="{{ route('tasks.members') }}">MEMBERS</a></li>
 <li><a href="">SETTING</a></li>
 </ul>
 </nav>
