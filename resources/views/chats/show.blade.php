@@ -6,6 +6,7 @@
                 {{ $chatmanage->user->username }}
             @endforeach
         @endforeach
+
     </x-slot>
     <form action="{{ route('chats.add', $chatgroup->id) }}" method="post">
         @csrf

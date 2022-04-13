@@ -1,13 +1,15 @@
 <x-layout>
     <x-slot name="title">
-        New Chat
+        Edit Chat
     </x-slot>
-    <form action="{{ route('chatgroups.store') }}" method="post" class="form-group">
+    <form action="{{ route('chatgroups.update', $chatgroup->id) }}" method="post" class="form-group">
+        @method('PATCH')
         @csrf
             <table class="ta1 mb1em">
                 <tr>
                     <th>チャットグループ名</th>
-                    <td><input type="text" name="name" class="ws" value="{{ old('name') }}">
+                    <td><input type="text" name="name" class="ws" value="{{ old('name', $chatgroup->name)}}">
+                        <input type="hidden" name="id" value="{{$chatgroup->id}}">
                         @error('name')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -17,8 +19,9 @@
                     <th>メンバー</th>
                     <td>
                         <div class="box">
-                            @foreach ($users as $user)
-                                <input type="checkbox" name="members[]" value="{{$user->id}}">{{ $user->username}}
+                            @foreach ($all_users as $user)
+                                <input type="checkbox" name="members[]" value="{{$user->id}}" {{
+                                        in_array($user->id, $in_users, true) ? "checked": ""}} >{{ $user->username}}
                                 <br>
                             @endforeach
                         </div>
@@ -30,7 +33,7 @@
                 </tr>
             </table>
             <div class="c">
-                <input type="submit" value="作成" class="btn" />
+                <input type="submit" value="更新" class="btn" />
             </div>
     </form>
 </x-layout>

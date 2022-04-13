@@ -87,8 +87,8 @@ Route::get('/chatgroups/create', [ChatgroupController::class, 'create'])
 Route::post('/chatgroups/store', [ChatgroupController::class, 'store'])
     ->name('chatgroups.store');
 
-Route::post('/chatmanage/add', [ChatmanageController::class, 'add'])
-    ->name('chatmanage.add');
+Route::post('/chatmanages/add', [ChatmanageController::class, 'add'])
+    ->name('chatmanages.add');
 
 Route::get('/chatgroups/{group_id}/show', [ChatgroupController::class, 'show'])
     ->name('chatgroups.show')
@@ -98,6 +98,13 @@ Route::post('/chats/{group_id}/add', [ChatController::class, 'add'])
     ->name('chats.add')
     ->where('group_id', '[0-9]+');
 
+Route::get('/chatgroups/{group_id}/edit', [ChatgroupController::class, 'edit'])
+    ->name('chatgroups.edit')
+    ->where('group_id', '[0-9]+');
+
+Route::patch('/chatgroups/{group_id}/update', [ChatgroupController::class, 'update'])
+    ->name('chatgroups.update')
+    ->where('group_id', '[0-9]+');
 
 
 

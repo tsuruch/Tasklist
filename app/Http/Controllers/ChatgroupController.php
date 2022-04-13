@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Chatgroup;
 use App\Models\Chatmanage;
 use App\Models\Chat;
+use App\Http\Requests\ChatgroupRequest;
 
 class ChatgroupController extends Controller
 {
@@ -22,24 +23,17 @@ class ChatgroupController extends Controller
                 ->with(['users'=>$users]);
     }
 
-    function store(Request $request) {
+    function store(ChatgroupRequest $request) {
         $chatgroup = new Chatgroup();
         $chatgroup->name = $request->name;
+        $chatgroup->user_id = session('user_id');
         $chatgroup->save();
         $group_id = Chatgroup::where('name', $request->name)->value('id');
 
-        $manages = [];
         $members = $request->members;
-        $members[] = session('user_id');
-        foreach ($members as $member) {
-            $record = [];
-            $record['user_id'] = $member;
-            $record['group_id'] = $group_id;
-            $manages[] = $record;
-        }
+        $create_id = session('user_id');
 
-        Chatmanage::insert($manages);
-
+        ChatmanageController::add($group_id, $members, $create_id);
         return redirect()->route('chatgroups.index');
     }
 
@@ -51,4 +45,33 @@ class ChatgroupController extends Controller
         return view('chats.show')
                 ->with(['chats'=> $chats, 'chatgroup'=>$chatgroup, 'chatgroup_tousers'=>$chatgroup_tousers]);
     }
+
+
+    public function edit($group_id) {
+        $in_users = [];
+        foreach (Chatmanage::where('group_id', $group_id)->get() as $user) {
+          $in_users[] = $user->user_id;
+        }
+        $all_users = User::where('id', '!=', session('user_id'))->get();
+        $chatgroup = Chatgroup::find($group_id);
+        return view('chats.edit')
+                ->with(['in_users'=>$in_users, 'all_users'=>$all_users, 'chatgroup'=>$chatgroup]);
+    }
+
+    function update(ChatgroupRequest $request, $group_id) {
+        $chatgroup = Chatgroup::find($group_id);
+        $chatgroup->name = $request->name;
+        $chatgroup->save();
+        $group_id = Chatgroup::where('name', $request->name)->value('id');
+
+        $members = $request->members;
+        $create_id = session('user_id');
+
+
+        ChatmanageController::update($group_id, $members, $create_id);
+
+        return redirect()->route('chatgroups.show', $group_id);
+    }
+
+
 }
