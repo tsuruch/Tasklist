@@ -36,4 +36,11 @@
                 <input type="submit" value="更新" class="btn" />
             </div>
     </form>
+    <form action="{{ route('chatgroups.destroy', $chatgroup->id) }}" method="post">
+        @method('DELETE')
+        @csrf
+        <div class="c">
+            <input type="submit" value="削除" class="btn" />
+        </div>
+    </form>
 </x-layout>

@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Traits\DatabaseLogger;
 
 class Chat extends Model
 {
     use HasFactory;
+    use DatabaseLogger;
 
 
     protected $fillable = [
@@ -24,5 +26,6 @@ class Chat extends Model
     public function chatgroup() {
         return $this->belongsTo(Chatgroup::class, 'group_id');
     }
+
 
  }

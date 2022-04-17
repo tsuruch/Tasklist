@@ -7,6 +7,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ChatgroupController;
 use App\Http\Controllers\ChatmanageController;
+use App\Http\Controllers\NotificationController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,10 @@ Route::get('/tasks/alltasks', [TaskController::class, 'alltasks'])
 */
 Route::get('/tasks/{task}', [TaskController::class, 'show'])
     ->name('tasks.show')
+    ->where('task', '[0-9]+');
+
+Route::post('/tasks/{task}', [TaskController::class, 'notificated'])
+    ->name('notificated')
     ->where('task', '[0-9]+');
 
 
@@ -106,6 +111,11 @@ Route::patch('/chatgroups/{group_id}/update', [ChatgroupController::class, 'upda
     ->name('chatgroups.update')
     ->where('group_id', '[0-9]+');
 
+Route::delete('/chatgroups/{group_id}/destroy', [ChatgroupController::class, 'destroy'])
+    ->name('chatgroups.destroy')
+    ->where('group_id', '[0-9]+');
 
+Route::patch('/notification/notificated', [NotificationController::class, 'notificated'])
+    ->name('notification.notificated');
 
 

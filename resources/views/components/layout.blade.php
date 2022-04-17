@@ -86,9 +86,20 @@ body.is-fixed #contents {padding-top: 0;}
 <div id="sub">
 
 <nav>
-<h2 class="bg1">通知</h2>
+<h2 class="bg1">タスク通知</h2>
 <ul class="submenu">
-<li><a href="#">案件3について・・・</a></li>
+@foreach ($tasknotifications as $tasknotification)
+    @if (!$tasknotification->notificated)
+        <form action="{{ route('notification.notificated', 'task') }} " method="post" name="tasknotification{{$tasknotification->id}}">
+            @method('PATCH')
+            @csrf
+            <li><a href="javascript:notification{{$tasknotification->id}}.submit()"><b>{{ $tasknotification->message }}</b></a></li>
+            <input type="hidden" name="notification" value="{{ $tasknotification->id }}">
+        </form>
+    @else
+        <li><a href="{{ route($tasknotification->route, $tasknotification->task_id) }}">{{ $tasknotification->message }}</a></li>
+    @endif
+@endforeach
 <li><a href="#">案件1について・・・</a></li>
 <li><a href="#">新人さんについて・・・</a></li>
 <li><a href="#">ミーティングの予定</a></li>

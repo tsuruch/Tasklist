@@ -4,25 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use App\Http\Traits\DatabaseLogger;
 
 class Task extends Model
 {
     use HasFactory;
+    use DatabaseLogger;
 
     protected $fillable = [
         'name',
         'deadline',
     ];
 
-    public function mytask() {
-        return $this->hasMany(myTask::class);
+    public function mytasks() {
+        return $this->hasMany(Mytask::class, 'task_id');
     }
 
-    public function comment() {
+    public function comments() {
         return $this->hasMany(Comment::class);
     }
-
 
 
 }

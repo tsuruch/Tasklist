@@ -73,5 +73,12 @@ class ChatgroupController extends Controller
         return redirect()->route('chatgroups.show', $group_id);
     }
 
+    public function destroy ($group_id) {
+        $chatgroup = Chatgroup::find($group_id);
+        $chatgroup->delete();
+
+        return redirect()->route('chatgroups.index');
+    }
+
 
 }
