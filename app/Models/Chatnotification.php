@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Notification extends Model
+class Chatnotification extends Model
 {
     use HasFactory;
 
-
     protected $fillable = [
-        'model_name',
+        'table_name',
         'user_id',
-        'model_id',
+        'group_id',
     ];
 }

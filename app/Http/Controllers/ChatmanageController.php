@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Chatmanage;
 use App\Models\Notification;
+use App\Models\Chatnotification;
 use App\Models\Chatgroup;
 
 class ChatmanageController extends Controller
@@ -22,10 +23,10 @@ class ChatmanageController extends Controller
         Chatmanage::insert($manages);
 
         foreach ($members as $member) {
-            $notification = new Notification();
+            $notification = new Chatnotification();
             $notification->user_id = $member;
-            $notification->model_id = $group_id;
-            $notification->model_name = 'chatgroups';
+            $notification->group_id = $group_id;
+            $notification->table_name = 'chatgroups';
             $notification->message = 'チャットグループ:'.$group_name.'に追加されました';
             $notification->route = 'chatgroups.show';
             $notification->save();
@@ -54,10 +55,10 @@ class ChatmanageController extends Controller
         }
 
         foreach ($add_members as $add_member) {
-            $notification = new Notification();
+            $notification = new Chatnotification();
             $notification->user_id = $add_member;
-            $notification->model_id = $group_id;
-            $notification->model_name = 'chatgroups';
+            $notification->group_id = $group_id;
+            $notification->table_name = 'chatgroups';
             $notification->message = 'チャットグループ:'.$group_name.'に追加されました';
             $notification->route = 'chatgroups.show';
             $notification->save();

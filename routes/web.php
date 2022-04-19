@@ -8,6 +8,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ChatgroupController;
 use App\Http\Controllers\ChatmanageController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SettingController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -115,7 +116,12 @@ Route::delete('/chatgroups/{group_id}/destroy', [ChatgroupController::class, 'de
     ->name('chatgroups.destroy')
     ->where('group_id', '[0-9]+');
 
-Route::patch('/notification/notificated', [NotificationController::class, 'notificated'])
+Route::patch('/notification/notificated/{table_name}', [NotificationController::class, 'notificated'])
     ->name('notification.notificated');
 
+Route::get('/setting', [SettingController::class, 'show'])
+    ->name('setting');
+
+Route::patch('/setting/usersetting/update', [SettingController::class, 'usersettingupdate'])
+    ->name('usersettingupdate');
 

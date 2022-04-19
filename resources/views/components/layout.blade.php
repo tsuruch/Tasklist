@@ -49,7 +49,7 @@ body.is-fixed #contents {padding-top: 0;}
 <li><a href="{{ route('tasks.create') }}">TASKREGIST</a></li>
 <li><a href="{{ route('chatgroups.index') }}">CHATS</a></li>
 <li><a href="{{ route('tasks.members') }}">MEMBERS</a></li>
-<li><a href="">SETTING</a></li>
+<li><a href="{{ route('setting') }}">SETTING</a></li>
 </ul>
 </nav>
 </div>
@@ -86,24 +86,40 @@ body.is-fixed #contents {padding-top: 0;}
 <div id="sub">
 
 <nav>
+<h2 class="bg1">チャット通知</h2>
+    <ul class="submenu">
+        @if ($chatnotifications->isEmpty())
+            <p>現在チャット通知はありません</p>
+        @endif
+    @foreach ($chatnotifications as $chatnotification)
+        @if (!$chatnotification->notificated)
+            <form action="{{ route('notification.notificated', 'chats' ) }} " method="post" name="chatnotification{{$chatnotification->id}}">
+                @method('PATCH')
+                @csrf
+                <li><a href="javascript:chatnotification{{$chatnotification->id}}.submit()"><b>{{ $chatnotification->message }}</b></a></li>
+                <input type="hidden" name="notification" value="{{ $chatnotification->id }}">
+            </form>
+        @else
+            <li><a href="{{ route($chatnotification->route, $chatnotification->group_id) }}">{{ $chatnotification->message }}</a></li>
+        @endif
+    @endforeach
 <h2 class="bg1">タスク通知</h2>
 <ul class="submenu">
+    @if ($tasknotifications->isEmpty())
+    <p>現在タスク通知はありません</p>
+    @endif
 @foreach ($tasknotifications as $tasknotification)
     @if (!$tasknotification->notificated)
-        <form action="{{ route('notification.notificated', 'task') }} " method="post" name="tasknotification{{$tasknotification->id}}">
+        <form action="{{ route('notification.notificated', 'tasks' ) }} " method="post" name="tasknotification{{$tasknotification->id}}">
             @method('PATCH')
             @csrf
-            <li><a href="javascript:notification{{$tasknotification->id}}.submit()"><b>{{ $tasknotification->message }}</b></a></li>
+            <li><a href="javascript:tasknotification{{$tasknotification->id}}.submit()"><b>{{ $tasknotification->message }}</b></a></li>
             <input type="hidden" name="notification" value="{{ $tasknotification->id }}">
         </form>
     @else
         <li><a href="{{ route($tasknotification->route, $tasknotification->task_id) }}">{{ $tasknotification->message }}</a></li>
     @endif
 @endforeach
-<li><a href="#">案件1について・・・</a></li>
-<li><a href="#">新人さんについて・・・</a></li>
-<li><a href="#">ミーティングの予定</a></li>
-<li><a href="#">打ち合わせ</a></li>
 </ul>
 </nav>
 

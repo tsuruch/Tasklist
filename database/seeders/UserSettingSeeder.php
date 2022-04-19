@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class NotificationSeeder extends Seeder
+class UserSettingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +15,11 @@ class NotificationSeeder extends Seeder
      */
     public function run()
     {
+        for ($i=1; $i < 31; $i++) {
+            DB::table('usersettings')->insert([
+                'user_id' => $i,
+            ]);
 
-
-
+        }
     }
 }

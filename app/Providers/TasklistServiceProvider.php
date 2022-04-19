@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Notification;
 use App\Models\Chatmanage;
 use App\Models\Tasknotification;
+use App\Models\Chatnotification;
+use App\Models\User;
 
 class TasklistServiceProvider extends ServiceProvider
 {
@@ -30,8 +32,30 @@ class TasklistServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function($view) {
-            $tasknotifications = Tasknotification::where('user_id', session('user_id'))->latest()->get();
-            $view->with('tasknotifications', $tasknotifications);
+            $usersetting = User::find(session('user_id'))->usersetting;
+            $tasknotify = [];
+            $chatnotify = [];
+            if ($usersetting->commentnotify) {
+                $tasknotify[] = 'comments';
+            }
+
+            if ($usersetting->chatnotify) {
+                $chatnotify[] = 'chats';
+            }
+
+            if ($usersetting->tasknotify) {
+                $tasknotify[] = 'tasks';
+            }
+
+            if ($usersetting->chatgroupnotify) {
+                $chatnotify[] = 'chatgroups';
+            }
+
+            $tasknotifications = Tasknotification::where('user_id', session('user_id'))
+                                                    ->whereIn('table_name', $tasknotify)->latest()->limit(5)->get();
+            $chatnotifications = Chatnotification::where('user_id', session('user_id'))
+                                                    ->whereIn('table_name', $chatnotify)->latest()->limit(5)->get();
+            $view->with(['tasknotifications'=>$tasknotifications, 'chatnotifications'=>$chatnotifications]);
         });
     }
 }

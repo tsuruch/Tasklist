@@ -97,6 +97,7 @@ class TaskController extends Controller
         $task->process2 = $request->process2;
         $task->process3 = $request->process3;
         $task->process4 = $request->process4;
+        $task->detail = $request->detail;
         $task->save();
 
         return redirect()->route('tasks.show', $task);

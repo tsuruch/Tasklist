@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserTableSeeder::class,
             TaskTableSeeder::class,
-            NotificationSeeder::class,
+            UserSettingSeeder::class,
         ]);
     }
 

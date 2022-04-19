@@ -56,6 +56,9 @@ class User extends Authenticatable
         return $this->hasMany(Chatgroup::class);
     }
 
+    public function usersetting() {
+        return $this->hasOne(Usersetting::class);
+    }
 
 
 }

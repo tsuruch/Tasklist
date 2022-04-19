@@ -12,7 +12,7 @@
         <tr>
             <td>{{ $user->username }}</td>
             <td>{{ $user->email }}</td>
-            <td>good luck!</td>
+            <td>{{ $user->usersetting->onecomment }}</td>
         </tr>
         @endforeach
     </table>

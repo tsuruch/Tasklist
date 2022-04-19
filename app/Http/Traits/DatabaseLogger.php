@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use App\Models\Notification;
 use App\Models\Tasknotification;
+use App\Models\Chatnotification;
 use App\Models\Mytask;
 use App\Models\Chatmanage;
 use App\Models\User;
@@ -46,7 +47,7 @@ trait DatabaseLogger
                 case 'chats':
                     $message = 'チャットグループ:'.$model->chatgroup->name.'に新しいコメントがあります!';
                     $route = 'chatgroups.show';
-                    $model_id = $model->chatgroup->id;
+                    $group_id = $model->chatgroup->id;
                     /*チャットからグループをつかみ、チャットマネージからuser_idを取得*/
                     $user_ids = $model->chatgroup->chatmanages->pluck('user_id')->toArray();
                     break;
@@ -65,11 +66,11 @@ trait DatabaseLogger
                 }
             } else {
                 foreach ($user_ids as $user_id) {
-                    $notification = new Notification();
-                    $notification->model_name = $table_name;
+                    $notification = new Chatnotification();
+                    $notification->table_name = $table_name;
                     $notification->message = $message;
                     $notification->route = $route;
-                    $notification->model_id = $model_id;
+                    $notification->group_id = $group_id;
                     $notification->user_id = $user_id;
                     $notification->save();
 
@@ -87,9 +88,9 @@ trait DatabaseLogger
         if ($table_name === 'tasks') {
                 $message = 'タスク:'.$model->name.'が更新されました';
                 $route = 'tasks.show';
-                $notification = new Notification();
-                $notification->model_name = $table_name;
-                $notification->model_id = $model->id;
+                $notification = new Tasknotification();
+                $notification->table_name = $table_name;
+                $notification->task_id = $model->id;
                 $notification->user_id = session('user_id');
                 $notification->message = $message;
                 $notification->route = $route;

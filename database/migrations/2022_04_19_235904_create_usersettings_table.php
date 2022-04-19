@@ -13,18 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
+        Schema::create('usersettings', function (Blueprint $table) {
             $table->id();
-            $table->string('model_name');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('model_id');
-            $table->text('message');
-            $table->string('route');
-            $table->boolean('notificated')->default(false);
+            $table->string('onecomment')->default('今日もよろしくお願いします。');
+            $table->boolean('commentnotify')->default(true);
+            $table->boolean('chatnotify')->default(true);;
+            $table->boolean('tasknotify')->default(true);;
+            $table->boolean('chatgroupnotify')->default(true);;
             $table->timestamps();
-            $table->foreign('model_id')
-            ->references('task_id')
-            ->on('mytasks')
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
             ->onDelete('cascade');
         });
     }
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('usersettings');
     }
 };
