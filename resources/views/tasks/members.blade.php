@@ -2,6 +2,7 @@
     <x-slot name="title">
         Members
     </x-slot>
+    <h3>ユーザー追加</h3>
     <table class="ta1">
         <tr>
             <th class="tamidashi">名前</th>

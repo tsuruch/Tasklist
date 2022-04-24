@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Requests\UserRequest;
 use \Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Str;
+use App\Http\Controllers\SettingController;
+use Database\Seeders\UserSettingSeeder;
 
 class LoginController extends Controller
 {
@@ -17,6 +20,9 @@ class LoginController extends Controller
         return view('login');
     }
 
+    public function signupform() {
+        return view('signup');
+    }
 
 
 
@@ -53,4 +59,26 @@ class LoginController extends Controller
         $request->session()->flush();
         return redirect()->route('users.loginform');
     }
+
+    public function signup(UserRequest $request) {
+        $user = new User;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->is_admin = false;
+        $user->api_token = Str::random(60);
+        $user->save();
+
+
+        session(['api_token' => $user->api_token,
+        'username' => $user->username,
+        'user_id' => $user->id,
+    ]);
+
+    SettingController::create($user->id);
+
+    return redirect()->route('tasks.index');
+
+    }
+
 }

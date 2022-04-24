@@ -2,7 +2,10 @@
     <x-slot name="title">
         Home
     </x-slot>
-    <h3>My Task</h3>
+    @php
+        $current_path = asset('img')
+    @endphp
+    <h3>My Task<img class="keylock" src="{{ asset('img/keylockon.png') }}" alt="" onclick="Lock_onoff_mytasks(this, '{{ $current_path }}', 'processes')"></h3>
     <table class="ta1">
         <tr>
             <th class="tamidashi">タスク名</th>
@@ -12,15 +15,22 @@
             <th class="tamidashi">工程3</th>
             <th class="tamidashi">工程4</th>
         </tr>
-        @foreach ($mytasks as $mytask)
-        <tr>
-            <td><a href="{{ route('tasks.show', $mytask->task) }}">{{ $mytask->task->name }}</a></td>
-            <td>{{ $mytask->task->deadline }}</td>
-            <td>{{ $mytask->task->process1 }}</td>
-            <td>{{ $mytask->task->process2 }}</td>
-            <td>{{ $mytask->task->process3 }}</td>
-            <td>{{ $mytask->task->process4 }}</td>
-        </tr>
-        @endforeach
+        <form name="mytasks_form" action="{{ route('tasks.processupdate') }}" method="post">
+            @csrf
+            @method('PATCH')
+            <input id="taskid_processname" type="hidden" name="taskid_processname" value="">
+            <input id="input_value" type="hidden" name="input_value" value="">
+            @foreach ($mytasks as $mytask)
+            <tr>
+                <td><a href="{{ route('tasks.show', $mytask->task) }}">{{ $mytask->task->name }}</a></td>
+                <td>{{ $mytask->task->deadline }}</td>
+                <td class="mytasks"><div class="processes" id="{{ $mytask->task->id}}_process1" contenteditable="false">{{ $mytask->task->process1 }}</div></td>
+                <td class="mytasks"><div class="processes" id="{{ $mytask->task->id}}_process2" contenteditable="false">{{ $mytask->task->process2 }}</div></td>
+                <td class="mytasks"><div class="processes" id="{{ $mytask->task->id}}_process3" contenteditable="false">{{ $mytask->task->process3 }}</div></td>
+                <td class="mytasks"><div class="processes" id="{{ $mytask->task->id}}_process4" contenteditable="false">{{ $mytask->task->process4 }}</div></td>
+            </tr>
+            @endforeach
+
+        </form>
     </table>
 </x-layout>

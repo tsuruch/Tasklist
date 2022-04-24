@@ -2,24 +2,33 @@
     <x-slot name="title">
         Setting※読み専用のものは色付けるとよい？
     </x-slot>
-    <h3>個人情報</h3>
-    <form action="" method="post" class="form-group">
+    @php
+        $current_path = asset('img')
+    @endphp
+    <h3>個人情報<img class="keylock" src="{{ asset('img/keylockon.png') }}" alt="" onclick="Lock_onoff(this, '{{ $current_path }}', 'userinfo')"></h3>
+    <form action="{{ route('user.update') }}" method="post" class="form-group">
         @method('PATCH')
         @csrf
         <table class="ta1 mb1em">
             <tr>
                 <th>お名前</th>
-                <td><input type="text" name="name" class="ws" value="{{ $user->username }}" readonly>
+                <td><input type="text" name="username" class="ws userinfo" value="{{ $user->username }}" readonly>
+                    @error('username')
+                        {{ $message }}
+                    @enderror
                 </td>
             </tr>
             <tr>
                 <th>メールアドレス</th>
-                <td><input type="text" name="name" class="ws" value="{{ $user->email }}" readonly>
+                <td><input type="email" name="email" class="ws userinfo" value="{{ $user->email }}" readonly>
+                    @error('email')
+                    {{ $message }}
+                @enderror
                 </td>
             </tr>
         </table>
         <div class="c">
-            <input type="submit" value="送信する" class="btn" />
+            <input id="userinfobtn" type="hidden" value="変更する" class="btn" />
         </div>
     </form>
     <h3>パスワード変更</h3>
@@ -29,22 +38,22 @@
     <table class="ta1 mb1em">
         <tr>
             <th>現在のパスワード</th>
-            <td><input type="text" name="name" class="ws" value="">
+            <td><input type="password" name="used_password" class="ws" placeholder="現在のパスワードを入力してください">
             </td>
         </tr>
         <tr>
             <th>新しいパスワード</th>
-            <td><input type="text" name="name" class="ws" value="">
+            <td><input type="password" name="password" class="ws" placeholder="新しく使うパスワードを入力してください">
             </td>
         </tr>
         <tr>
             <th>（確認用）</th>
-            <td><input type="text" name="name" class="ws" value="">
+            <td><input type="password" name="password_confimation" class="ws" placeholder="もう一度新しく使うパスワードを入力してください">
             </td>
         </tr>
     </table>
     <div class="c">
-        <input type="submit" value="送信する" class="btn" />
+        <input type="submit" value="変更する" class="btn" />
     </div>
 </form>
     <h3>その他の設定</h3>
@@ -68,7 +77,7 @@
         </tr>
     </table>
     <div class="c">
-        <input type="submit" value="送信する" class="btn" />
+        <input type="submit" value="変更する" class="btn" />
     </div>
 </form>
 </x-layout>

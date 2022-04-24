@@ -9,6 +9,8 @@ use App\Http\Controllers\ChatgroupController;
 use App\Http\Controllers\ChatmanageController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +36,12 @@ Route::post('/users/login', [LoginController::class, 'login'])
 
 Route::post('/users/logout', [LoginController::class, 'logout'])
     ->name('users.logout');
+
+Route::get('/signup', [LoginController::class, 'signupform'])
+    ->name('users.signupform');
+
+Route::post('/user/signup', [LoginController::class, 'signup'])
+    ->name('users.signup');
 
 Route::get('/tasks/alltasks/', [TaskController::class, 'alltasks'])
     ->name('tasks.alltasks');
@@ -125,3 +133,11 @@ Route::get('/setting', [SettingController::class, 'show'])
 Route::patch('/setting/usersetting/update', [SettingController::class, 'usersettingupdate'])
     ->name('usersettingupdate');
 
+Route::patch('/setting/user/update', [UserController::class, 'update'])
+    ->name('user.update');
+
+Route::get('/admin', [AdminController::class, 'show'])
+    ->name('admin');
+
+Route::patch('tasks/processupdate', [TaskController::class, 'processupdate'])
+    ->name('tasks.processupdate');

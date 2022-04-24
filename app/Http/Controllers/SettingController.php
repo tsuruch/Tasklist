@@ -48,4 +48,10 @@ class SettingController extends Controller
 
         return back();
     }
+
+    public static function create($user_id) {
+        $usersetting = new Usersetting();
+        $usersetting->user_id = $user_id;
+        $usersetting->save();
+    }
 }

@@ -116,4 +116,16 @@ class TaskController extends Controller
                 ->with(['users'=>$users]);
     }
 
+
+    public function processupdate(Request $request) {
+        $taskid_processname = explode("_", $request->taskid_processname);
+        $task_id = $taskid_processname[0];
+        $processname = $taskid_processname[1];
+        $input_value = $request->input_value;
+        $task = Task::find($task_id);
+        $task->$processname = $input_value;
+        $task->save();
+        return back();
+    }
+
 }

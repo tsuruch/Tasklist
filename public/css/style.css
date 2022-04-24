@@ -152,6 +152,13 @@ header .inner {
 	border: 1px solid #ccc;	/*枠線の幅、線種、色*/
 	background: #fff;	/*背景色*/
 }
+
+.keylock {
+    width: 25px;
+	height:  25px;	/*上下、左右への余白*/
+    cursor:pointer;
+
+}
 #main h3::first-letter {
 	border-left: 3px solid #28a8b8;	/*左側のアクセントラインの幅、線種、色*/
 	padding-left: 10px;
