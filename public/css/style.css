@@ -791,3 +791,13 @@ body.s-n #sub {display: none;}
     height: 200px;
     overflow-y: scroll;
 }
+
+
+.pagination {
+    text-align: center;
+}
+
+/* ページ送りを横並びに */
+.pagination li{
+    display: inline-block;
+}

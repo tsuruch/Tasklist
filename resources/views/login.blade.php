@@ -26,7 +26,7 @@
         </form>
         <div class="form-footer">
           <p><a href="{{ route('users.signupform') }}">アカウントを作成する</a></p>
-          <p><a href="#">パスワードを忘れたら？?</a></p>
+          <p><a href="{{ route('passwordforgot') }}">パスワードを忘れたら？?</a></p>
         </div>
       </div>
 </body>

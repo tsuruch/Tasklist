@@ -36,6 +36,7 @@
                 <input type="submit" value="更新" class="btn" />
             </div>
     </form>
+    @if($is_chatgroups_admin)
     <form action="{{ route('chatgroups.destroy', $chatgroup->id) }}" method="post">
         @method('DELETE')
         @csrf
@@ -43,4 +44,5 @@
             <input type="submit" value="削除" class="btn" />
         </div>
     </form>
+    @endif
 </x-layout>

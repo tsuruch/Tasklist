@@ -32,23 +32,29 @@
         </div>
     </form>
     <h3>パスワード変更</h3>
-    <form action="" method="post" class="form-group">
+    <form action="{{ route('passwordupdate') }}" method="post" class="form-group">
         @method('PATCH')
         @csrf
     <table class="ta1 mb1em">
         <tr>
             <th>現在のパスワード</th>
-            <td><input type="password" name="used_password" class="ws" placeholder="現在のパスワードを入力してください">
+            <td><input type="password" name="current_password" class="ws" placeholder="現在のパスワードを入力してください">
+                @error('current_password')
+                    {{ $message }}
+                @enderror
             </td>
         </tr>
         <tr>
             <th>新しいパスワード</th>
             <td><input type="password" name="password" class="ws" placeholder="新しく使うパスワードを入力してください">
+                @error('password')
+                {{ $message }}
+            @enderror
             </td>
         </tr>
         <tr>
             <th>（確認用）</th>
-            <td><input type="password" name="password_confimation" class="ws" placeholder="もう一度新しく使うパスワードを入力してください">
+            <td><input type="password" name="password_confirmation" class="ws" placeholder="もう一度新しく使うパスワードを入力してください">
             </td>
         </tr>
     </table>

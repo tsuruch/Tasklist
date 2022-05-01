@@ -4,7 +4,9 @@
     </x-slot>
     <table class="ta1">
         <h3>チャットグループ一覧</h3>
+        @if ($is_chatgroups_admin)
         <a href="{{ route('chatgroups.create') }}">新規チャット作成</a>
+        @endif
         <tr>
             <th class="tamidashi">チャットグループ名</th>
             <th class="tamidashi">作成者</th>
@@ -20,8 +22,20 @@
                 @endif
             </td>
             <td>{{ $chatgroup->chatgroup->user->username }}</td>
-            <td>最新コメント</td>
-            <td>最新日時</td>
+            <td>
+                @if ($chatgroup->chatgroup->chats->isEmpty())
+                    まだチャットがありません
+                @else
+                    {{ Str::limit($chatgroup->chatgroup->chats->last()->chat, 26, '...') }}
+                @endif
+            </td>
+            <td>
+                @if ($chatgroup->chatgroup->chats->isEmpty())
+                    {{ $chatgroup->chatgroup->created_at }}
+                @else
+                {{ $chatgroup->chatgroup->chats->last()->created_at}}
+                @endif
+            </td>
         </tr>
         @endforeach
     </table>

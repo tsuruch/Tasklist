@@ -11,6 +11,7 @@ use App\Models\Comment;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Validation\Rules\Exists;
+use Illuminate\Pagination\Paginator;
 use PhpParser\Node\Stmt\Foreach_;
 
 class TaskController extends Controller
@@ -31,9 +32,11 @@ class TaskController extends Controller
     public function alltasks(Request $request) {
         $filter = $request->filter;
         $columns = $request->columns;
+        $params = ['filter' => $filter, 'columns' => $columns];
         $filtermsg = "";
-        if (!isset($filter)) {
-            $tasks = Task::orderBy('deadline', 'asc')->get();
+        $mytasks = Mytask::where('user_id', session('user_id'))->pluck('task_id')->toArray();
+        if (!isset($filter) || empty($columns)) {
+            $tasks = Task::orderBy('deadline', 'asc')->paginate(10);
         }else{
             $tasks = Task::where(function($query) use($columns, $filter){
                 $i = 0;
@@ -43,12 +46,12 @@ class TaskController extends Controller
                     $query->$where($column, 'LIKE', '%'.$filter.'%');
                 }
 
-            })->get();
+            })->paginate(10);
             $filtermsg = 'キーワード['.$filter.']を含むタスクを表示中';
         }
 
         return view('tasks.alltasks')
-        ->with(['tasks' => $tasks, 'filtermsg' => $filtermsg]);
+        ->with(['tasks' => $tasks, 'filtermsg' => $filtermsg, 'mytasks' => $mytasks, 'params' => $params]);
     }
 
     public function filter($filter) {
@@ -111,7 +114,8 @@ class TaskController extends Controller
 
 
     public function members() {
-        $users = User::latest()->get();
+
+        $users = User::oldest()->paginate(10);
         return view('tasks.members')
                 ->with(['users'=>$users]);
     }

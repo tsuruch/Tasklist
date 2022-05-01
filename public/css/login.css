@@ -30,6 +30,15 @@ h1 {
   padding: 1em 0;
 }
 
+h3{
+    text-align: center;
+    padding: 1em 0;
+  }
+
+p {
+    text-align: center;
+    padding: 1em 0;
+}
 form {
   padding: 0 1.5em;
 }

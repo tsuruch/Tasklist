@@ -45,14 +45,16 @@
 
 @endif
 
+@if ($is_tasks_admin)
+<form action="{{ route('tasks.destroy', $task) }}" method="post">
+    @csrf
+    @method('DELETE')
+    <div class="c">
+        <input type="submit" value="削除" class="btn" />
+    </div>
+</form>
 
-    <form action="{{ route('tasks.destroy', $task) }}" method="post">
-        @csrf
-        @method('DELETE')
-        <div class="c">
-            <input type="submit" value="削除" class="btn" />
-        </div>
-    </form>
+@endif
     <h3>詳細</h3>
     <p>{!! nl2br(e($task->detail)) !!}</p>
     <h3>コメント欄</h3>

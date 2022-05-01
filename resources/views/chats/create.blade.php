@@ -18,14 +18,16 @@
                     <td>
                         <div class="box">
                             @foreach ($users as $user)
-                                <input type="checkbox" name="members[]" value="{{$user->id}}">{{ $user->username}}
+                                <input type="checkbox" name="members[]" value="{{$user->id}}" onclick="Displaymember(event, {{$user->id}})">{{ $user->username}}
                                 <br>
                             @endforeach
                         </div>
                         @error('members')
                         <div class="error">{{ $message }}</div>
                         @enderror
-                        <p>右側にはチェックボックスで選択した人を表示する</p>
+                        @foreach ($users as $user)
+                        <span id="{{$user->id}}" style="display: none">{{ $user->username}}</span>
+                    @endforeach
                     </td>
                 </tr>
             </table>

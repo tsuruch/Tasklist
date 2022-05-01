@@ -21,17 +21,17 @@ trait DatabaseLogger
 
         $table_name = $model->getTable();
         $user_id = session('user_id');
-        if ($table_name !== 'chatgroups') {
+        if ($table_name !== 'chatgroups' && $table_name !== 'tasks') {
             switch ($table_name) {
                 /* Tasknotificationに外部キー制約を持たせているので、そこにいれられない*/
+
+                /*
                 case 'tasks':
                     $message = 'タスク:'.$model->name.'が追加されました';
                     $route = 'tasks.show';
                     $task_id = $model->id;
-                    /*基本的には全員に知らせる*/
                     $user_ids = User::pluck('id')->toArray();
                     break;
-                /*
                 case 'chatgroups':
                     $message = 'チャットグループ:'.$model->name.'に追加されました';
                     $route = 'chatgroups.show';

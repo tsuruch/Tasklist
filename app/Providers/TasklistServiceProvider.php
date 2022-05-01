@@ -33,10 +33,15 @@ class TasklistServiceProvider extends ServiceProvider
     {
 
         View::composer('*', function($view) {
-            if (strpos(url()->current(), 'log')==false && strpos(url()->current(), 'signup')==false) {
+            if (strpos(url()->current(), 'log')==false &&
+                strpos(url()->current(), 'signup')==false &&
+                strpos(url()->current(), 'forgot')==false &&
+                strpos(url()->current(), 'reset')==false) {
                 $user = User::find(session('user_id'));
                 $usersetting = $user->usersetting;
-                $is_admin = $user->is_admin;
+                $is_chatgroups_admin = $user->is_chatgroups_admin;
+                $is_tasks_admin = $user->is_tasks_admin;
+                $is_auth_admin = $user->is_auth_admin;
                 $tasknotify = [];
                 $chatnotify = [];
                 if ($usersetting->commentnotify) {
@@ -60,7 +65,11 @@ class TasklistServiceProvider extends ServiceProvider
                 $chatnotifications = Chatnotification::where('user_id', session('user_id'))
                                                         ->whereIn('table_name', $chatnotify)->latest()->limit(5)->get();
 
-                $view->with(['tasknotifications'=>$tasknotifications, 'chatnotifications'=>$chatnotifications, 'is_admin'=>$is_admin]);
+                $view->with(['tasknotifications'=>$tasknotifications,
+                             'chatnotifications'=>$chatnotifications,
+                             'is_chatgroups_admin'=>$is_chatgroups_admin,
+                             'is_tasks_admin'=>$is_tasks_admin,
+                             'is_auth_admin'=>$is_auth_admin,]);
        # code...
             }
         });

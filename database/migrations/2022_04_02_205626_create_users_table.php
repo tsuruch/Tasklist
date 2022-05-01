@@ -21,8 +21,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('api_token', 80)->unique()->nullable()->default(null)->comment('guardが参照するapi_token');
-            $table->boolean('is_admin')->default(false)->comment('trueだとadmin権限を持つ');
-            $table->rememberToken();
+            $table->boolean('is_chatgroups_admin')->default(false)->comment('trueだとchatgroups管理権限を持つ');
+            $table->boolean('is_tasks_admin')->default(false)->comment('trueだとtasks管理権限を持つ');
+            $table->boolean('is_auth_admin')->default(false)->comment('trueだと権限管理権限を持つ');
             $table->timestamps();
         });
     }

@@ -43,6 +43,18 @@ Route::get('/signup', [LoginController::class, 'signupform'])
 Route::post('/user/signup', [LoginController::class, 'signup'])
     ->name('users.signup');
 
+Route::get('/passwordforgot', [LoginController::class, 'passwordforgotform'])
+    ->name('passwordforgot');
+
+Route::patch('/forgotemail', [LoginController::class, 'forgotemail'])
+    ->name('forgotemail');
+
+Route::get('/passwordreset/{resettoken}', [LoginController::class, 'passwordreset'])
+    ->name('passwordreset');
+
+Route::patch('/passwordreset/validate', [LoginController::class, 'passwordresetvalidate'])
+    ->name('passwordreset.validate');
+
 Route::get('/tasks/alltasks/', [TaskController::class, 'alltasks'])
     ->name('tasks.alltasks');
 
@@ -136,8 +148,14 @@ Route::patch('/setting/usersetting/update', [SettingController::class, 'usersett
 Route::patch('/setting/user/update', [UserController::class, 'update'])
     ->name('user.update');
 
+Route::patch('/setting/password/update', [UserController::class, 'passwordupdate'])
+    ->name('passwordupdate');
+
 Route::get('/admin', [AdminController::class, 'show'])
     ->name('admin');
+
+Route::patch('/admin/{user_id}/update', [AdminController::class, 'update'])
+    ->name('admin.update');
 
 Route::patch('tasks/processupdate', [TaskController::class, 'processupdate'])
     ->name('tasks.processupdate');

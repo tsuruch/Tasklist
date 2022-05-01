@@ -1,8 +1,13 @@
 <x-layout>
     <x-slot name="title">
         {{ $chatgroup->name }}
+        参加者：
         @foreach ($chatgroup_tousers as $chatgroup_touser)
             @foreach ($chatgroup_touser->chatmanages as $chatmanage)
+                @if ($loop->index === 4)
+                    ...
+                    @break
+                @endif
                 {{ $chatmanage->user->username }}
             @endforeach
         @endforeach

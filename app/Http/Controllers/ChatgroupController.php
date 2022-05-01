@@ -12,7 +12,7 @@ use App\Http\Requests\ChatgroupRequest;
 class ChatgroupController extends Controller
 {
     function index() {
-        $chatgroups = Chatmanage::where('user_id', session('user_id'))->get();
+        $chatgroups = Chatmanage::where('chatmanages.user_id', session('user_id'))->get();
         return view('chats.index')
                 ->with(['chatgroups'=>$chatgroups]);
     }

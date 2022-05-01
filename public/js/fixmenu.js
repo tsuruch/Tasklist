@@ -43,3 +43,11 @@ fm_addEvent(window, 'load', function() {
   	}
   });
 });
+
+
+
+
+//今見ているメニューに黄色下線を引いてフォーカスさせる
+function Menufocus(e) {
+    console.log(e.target);
+}

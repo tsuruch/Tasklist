@@ -33,7 +33,7 @@ body.is-fixed #contents {padding-top: 0;}
 <h1 id="logo"><a href="{{ route('tasks.index') }}">進捗管理アプリ</a></h1>
 <p>{{ session('username', 'ゲスト')}}</p>
 <ul id="h-nav">
-    @if ($is_admin)
+    @if ($is_auth_admin)
         <a href="{{ route('admin') }}">管理者用ページ</a>
     @endif
     <a href=""></a>
@@ -51,12 +51,14 @@ body.is-fixed #contents {padding-top: 0;}
 <div class="nav-fix-pos">
     <nav id="menubar">
     <ul>
-    <li class="current"><a href="{{ route('tasks.index') }}">HOME</a></li>
-    <li><a href="{{ route('tasks.alltasks') }}">ALLSCHEDULE</a></li>
-    <li><a href="{{ route('tasks.create') }}">TASKREGIST</a></li>
-    <li><a href="{{ route('chatgroups.index') }}">CHATS</a></li>
-    <li><a href="{{ route('tasks.members') }}">MEMBERS</a></li>
-    <li><a href="{{ route('setting') }}">SETTING</a></li>
+    <li class="{{ url()->current() === route('tasks.index')? "current":""}}"><a href="{{ route('tasks.index') }}">HOME</a></li>
+    <li class="{{ url()->current() === route('tasks.alltasks')? "current":""}}"><a href="{{ route('tasks.alltasks') }}">ALLSCHEDULE</a></li>
+    <li class="{{ url()->current() === route('chatgroups.index')? "current":""}}"><a href="{{ route('chatgroups.index') }}">CHATS</a></li>
+    <li class="{{ url()->current() === route('tasks.members')? "current":""}}"><a href="{{ route('tasks.members') }}">MEMBERS</a></li>
+    <li class="{{ url()->current() === route('setting')? "current":""}}"><a href="{{ route('setting') }}">SETTING</a></li>
+    @if ($is_tasks_admin)
+    <li class="{{ url()->current() === route('tasks.create')? "current":""}}"><a href="{{ route('tasks.create') }}">TASKREGIST</a></li>
+    @endif
     </ul>
     </nav>
     </div>
@@ -71,12 +73,12 @@ body.is-fixed #contents {padding-top: 0;}
     <!--小さな端末用（900px以下端末）メニュー-->
     <nav id="menubar-s">
     <ul>
-        <!--カレントメニューを下線で動的に表示できるように後程修正　class current を動的に変えるプログラム-->
-        <li class="current"><a href="{{ route('tasks.index') }}">HOME</a></li>
-        <li><a href="">ALLSCHEDULE</a></li>
-        <li><a href="{{ route('tasks.create') }}">TASKREGIST</a></li>
-        <li><a href="">MYCHAT</a></li>
-        <li><a href="">SETTING</a></li>
+        <li class="{{ url()->current() === route('tasks.index')? "current":""}}"><a href="{{ route('tasks.index') }}">HOME</a></li>
+        <li class="{{ url()->current() === route('tasks.alltasks')? "current":""}}"><a href="{{ route('tasks.alltasks') }}">ALLSCHEDULE</a></li>
+        <li class="{{ url()->current() === route('tasks.create')? "current":""}}"><a href="{{ route('tasks.create') }}">TASKREGIST</a></li>
+        <li class="{{ url()->current() === route('chatgroups.index')? "current":""}}"><a href="{{ route('chatgroups.index') }}">CHATS</a></li>
+        <li class="{{ url()->current() === route('tasks.members')? "current":""}}"><a href="{{ route('tasks.members') }}">MEMBERS</a></li>
+        <li class="{{ url()->current() === route('setting')? "current":""}}"><a href="{{ route('setting') }}">SETTING</a></li>
     </ul>
     </nav>
     <div id="contents">

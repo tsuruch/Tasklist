@@ -25,6 +25,7 @@ function Lock_onoff(obj, current_path, category) {
         let elements = document.getElementsByClassName(category);
         for (let i = 0; i < elements.length; i++) {
             elements[i].readOnly = false;
+            elements[i].style.backgroundColor = "#FFFCDC";
         }
         let btn = document.getElementById(category + 'btn');
         btn.type = 'submit';
@@ -34,6 +35,7 @@ function Lock_onoff(obj, current_path, category) {
         let elements = document.getElementsByClassName(category);
         for (let i = 0; i < elements.length; i++) {
             elements[i].readOnly = true;
+            elements[i].style.backgroundColor = "";
         }
         let btn = document.getElementById(category + 'btn');
         btn.type = 'hidden';
@@ -46,9 +48,9 @@ function Lock_onoff_mytasks(obj, current_path, category) {
     if (obj.src == current_path+'/keylockon.png') {
         obj.setAttribute('src', current_path + '/keylockoff.png');
         let elements = document.getElementsByClassName(category);
-        console.log(elements);
         for (let i = 0; i < elements.length; i++) {
             elements[i].contentEditable = "true";
+            elements[i].style.backgroundColor = "#FFFCDC";
         }
 
     }else{
@@ -56,6 +58,7 @@ function Lock_onoff_mytasks(obj, current_path, category) {
         let elements = document.getElementsByClassName(category);
         for (let i = 0; i < elements.length; i++) {
             elements[i].contentEditable = "false";
+            elements[i].style.backgroundColor = "";
         }
     }
 }
@@ -89,3 +92,40 @@ window.addEventListener("load", function(){
 
 })
 
+
+function Displaymember(e, id) {
+    if (e.target.checked) {
+        document.getElementById(id).style = "";
+    } else {
+        document.getElementById(id).style = "display: none";
+    }
+}
+
+
+function Admincheck(e) {
+    let change = "Off";
+    if (e.target.checked) {
+        change = "On";
+    }
+    let nowadmin = e.target.previousElementSibling.textContent;
+    if (e.target.previousElementSibling.textContent != change) {
+        e.target.parentNode.style.backgroundColor = "#FFCBCB";
+        e.target.nextElementSibling.style = "";
+        e.target.nextElementSibling.value = `${nowadmin}→${change}`;
+    }else{
+        e.target.parentNode.style.backgroundColor = "";
+        e.target.nextElementSibling.style = "display: None";
+    }
+}
+
+
+function Adminsubmit(e, user_id, category) {
+    let user = document.getElementById(user_id + "_username").textContent;
+    //console.log(`${user}の${category}を${e.target.value}に切り替えますか?`);
+    if (window.confirm(`${user}の${category}を${e.target.value}に切り替えますか?`)) {
+        e.target.parentNode.submit();
+    } else {
+        console.log("キャンセル")
+    }
+
+}
