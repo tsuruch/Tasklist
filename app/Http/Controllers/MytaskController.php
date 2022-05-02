@@ -10,6 +10,11 @@ use App\Models\Mytask;
 class MytaskController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('authuser');
+    }
+
     public function add(Request $request, Task $task) {
         $mytask = new Mytask();
         $mytask->task_id = $task->id;

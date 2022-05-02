@@ -11,6 +11,11 @@ use App\Http\Requests\ChatgroupRequest;
 
 class ChatgroupController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('authuser');
+    }
+
     function index() {
         $chatgroups = Chatmanage::where('chatmanages.user_id', session('user_id'))->get();
         return view('chats.index')

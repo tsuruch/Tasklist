@@ -10,6 +10,11 @@ use App\Models\Chatgroup;
 
 class ChatmanageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('authuser');
+    }
+
     public static function add($group_id, $members, $create_id){
         $manages = [];
         $members[] = $create_id;

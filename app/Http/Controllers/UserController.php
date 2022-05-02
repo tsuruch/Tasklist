@@ -10,6 +10,11 @@ use App\Http\Requests\PasswordRequest;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('authuser');
+    }
+
     public function update(UserinfoRequest $request) {
         $user = User::find(session('user_id'));
         $user->username = $request->username;

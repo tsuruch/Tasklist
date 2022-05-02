@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot name="title">
-        All Tasks !タスクの色は属性に合わせて色々変える
+        All Tasks
     </x-slot>
     <table class="ta1 mb1em">
         <tr>

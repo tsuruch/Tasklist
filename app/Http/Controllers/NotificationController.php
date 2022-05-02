@@ -9,6 +9,11 @@ use App\Models\Chatnotification;
 
 class NotificationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('authuser');
+    }
+
     public function notificated (Request $request, $table_name) {
         if ($table_name === 'chats') {
 

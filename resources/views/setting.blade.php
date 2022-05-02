@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot name="title">
-        Setting※読み専用のものは色付けるとよい？
+        Setting
     </x-slot>
     @php
         $current_path = asset('img')

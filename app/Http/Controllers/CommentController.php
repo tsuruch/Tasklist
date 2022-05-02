@@ -10,6 +10,11 @@ use App\Http\Requests\CommentRequest;
 class CommentController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('authuser');
+    }
+
 
     public function store(CommentRequest $request, Task $task) {
         $comment = new Comment;

@@ -7,6 +7,14 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('authuser');
+    }
+
+
     public function show() {
         $users = User::oldest()->get();
         return view('admin')

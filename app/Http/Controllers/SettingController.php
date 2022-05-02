@@ -8,6 +8,11 @@ use App\Models\Usersetting;
 
 class SettingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('authuser');
+    }
+
     public function show() {
         $user = User::find(session('user_id'));
         $usersetting = $user->usersetting;

@@ -14,13 +14,16 @@ body {
 	font-size: 15px;	/*文字サイズ*/
 	line-height: 2;		/*行間*/
 	-webkit-text-size-adjust: none;
-	background: #f0f0f0;	/*背景色（古いブラウザ用）*/
 }
 h1,h2,h3,h4,h5,p,ul,ol,li,dl,dt,dd,form,figure,form {margin: 0px;padding: 0px;font-size: 100%;}
 ul {list-style-type: none;}
 ol {padding-left: 40px;padding-bottom: 15px;}
 img {border: none;max-width: 100%;height: auto;vertical-align: middle;}
-table {border-collapse:collapse;font-size: 100%;border-spacing: 0;}
+table {border-collapse:collapse;font-size: 100%;border-spacing: 0;
+    white-space: nowrap; /*改行をさせない*/
+    overflow: hidden;  /*はみ出た文字を非表示にする*/
+    text-overflow: ellipsis; /*切り取られたテキストを表現するために省略記号「 … 」 を表示する*/
+}
 iframe {width: 100%;}
 
 /*リンク（全般）設定
@@ -28,7 +31,8 @@ iframe {width: 100%;}
 a {
 	color: #666;	/*リンクテキストの色*/
 	-webkit-transition: 0.5s;	/*マウスオン時の移り変わるまでの時間設定。0.5秒。*/
-	transition: 0.5s;			/*同上*/
+	transition: 0.5s;
+    text-decoration: none;			/*同上*/
 }
 a:hover {
 	color: #28a8b8;				/*マウスオン時の文字色*/
@@ -44,12 +48,11 @@ header .inner {
 	height: 100px;	/*ヘッダーの高さ*/
 	position: relative;
 }
-/*ロゴ画像*/
-#logo img {
-	width: 300px;	/*画像幅*/
-	position: absolute;
-	left: 3%;	/*左から3%の場所に配置*/
-	top: 32px;	/*上から32pxの場所に配置*/
+
+/*ヘッダータイトル*/
+#apptitle {
+    color: #FEF9EF;
+    font-size: 100%;
 }
 /*ヘッダー右側のアイコン類*/
 #h-nav {
@@ -295,13 +298,12 @@ header .inner {
 }
 /*subコンテンツ内のh2タグ設定*/
 #sub h2 {
-	padding: 40px 15px;	/*上下左右へのボックス内の余白*/
+	padding: 10px 15px;	/*上下左右へのボックス内の余白*/
 	font-weight: normal;	/*hタグのデフォルトの太字を標準にする設定*/
-	letter-spacing: 0.2em;	/*文字間隔を少し広くとる設定*/
-	font-size: 28px;		/*文字サイズ*/
+	font-size: 100%;		/*文字サイズ*/
+    font-weight: bold;
 	line-height: 1.5;	/*行間*/
-	color: #000;		/*文字色*/
-	background: #fff;	/*背景色（サンプルテンプレートでは以下のキーボードやグリーンの背景画像とともに設定しているので注意）*/
+	color: #fff;		/*文字色*/
 	border-top: 1px solid #ccc;	/*上の線の幅、線種、色*/
 	border-bottom: 1px solid #ccc;	/*下の線の幅、線種、色*/
 }
@@ -318,7 +320,7 @@ header .inner {
 }
 /*bg1背景（キーボード）*/
 #sub h2.bg1 {
-	background: #fff url(../images/bg1.png) no-repeat right center;	/*背景色、背景画像読み込み、rightは右寄せ、center上下の中央という意味*/
+	background: #28a8b8;
 }
 /*bg2背景（グリーン）*/
 #sub h2.bg2 {
@@ -327,6 +329,16 @@ header .inner {
 /*subコンテンツ内のpタグ設定*/
 #sub p {
 	padding: 15px;
+    white-space: nowrap; /*改行をさせない*/
+    overflow: hidden;  /*はみ出た文字を非表示にする*/
+    text-overflow: ellipsis; /*切り取られたテキストを表現するために省略記号「 … 」 を表示する*/
+}
+
+#sub a {
+	padding: 15px;
+    white-space: nowrap; /*改行をさせない*/
+    overflow: hidden;  /*はみ出た文字を非表示にする*/
+    text-overflow: ellipsis; /*切り取られたテキストを表現するために省略記号「 … 」 を表示する*/
 }
 
 /*サブコンテンツ内のメニュー
@@ -801,3 +813,5 @@ body.s-n #sub {display: none;}
 .pagination li{
     display: inline-block;
 }
+
+

@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot name="title">
-        Home ！マイタスクの色は水色にする
+        Home
     </x-slot>
     @php
         $current_path = asset('img')
@@ -21,9 +21,9 @@
             <input id="taskid_processname" type="hidden" name="taskid_processname" value="">
             <input id="input_value" type="hidden" name="input_value" value="">
             @foreach ($mytasks as $mytask)
-            <tr>
+            <tr style="background-color:#EFFFFD">
                 <td><a href="{{ route('tasks.show', $mytask->task) }}">{{ $mytask->task->name }}</a></td>
-                <td>{{ $mytask->task->deadline }}</td>
+                <td >{{ $mytask->task->deadline }}</td>
                 <td class="mytasks processes" id="{{ $mytask->task->id}}_process1" contenteditable="false">{{ $mytask->task->process1 }}</td>
                 <td class="mytasks processes" id="{{ $mytask->task->id}}_process1" contenteditable="false">{{ $mytask->task->process2 }}</td>
                 <td class="mytasks processes" id="{{ $mytask->task->id}}_process1" contenteditable="false">{{ $mytask->task->process3 }}</td>
