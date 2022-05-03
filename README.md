@@ -1,64 +1,57 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## まずはじめに 
+ご覧いただきありがとうございます。このリポジトリはポートフォリオとして作成したタスク管理システムのリポジトリです。  
+AWSのEC2インスタンスにてデプロイ
+Link:(http://35.78.92.128)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### アプリを作る際に使用したもの
+- PHP(Laravelフレームワーク)
+- HTML
+- CSS※1
+- Javascript※1
+- Docker for Windows
+- AWS
 
-## About Laravel
+※1 https://template-party.com
+にて基本的なレイアウトを用い、追加したい箇所や、削除したい箇所を手修正。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## タスク管理システムの機能
+- ユーザー認証機能
+　- ユーザー登録
+  - ログインログオフ
+  - ログイン維持
+  - パスワードリセット
+- 進捗を管理する機能
+  - 表のような形式でどのタスクがどの工程まで進んでいるかを一目で確認可能
+  - また、タスクにはそれぞれ詳細ページを持ち、その中で案件の詳細を確認したり、コメントなどを投稿することもできる
+  - 自身の関わるタスクだけをマイタスクとして登録し、自分が管理したいタスクだけを表示することができる機能
+  - マイタスクとして登録したタスクに限っては、進捗管理の署名を記入する際に、エクセルシートのセルに記入するかのように簡単に可能
+  - またタスクを作成を行ったり削除を行う場合には権限が必要になっている
+- チャットグループ作成機能
+  - チャットグループを作成することができる。
+  - 作成者は権限が必要になる。また作成する際にチャットグループの名前とどのユーザーをグループに参加させるかを選択可能。（作成した後も変更可能）。
+  - チャットグループを作成したものは自身が作成したグループを削除することが可能。
+  - チャットグループに入っているユーザーはCHATメニューにて自身が参加しているグループを確認可能。
+- 通知機能
+  - 自身がマイタスクとして登録しているタスクの進捗更新や、詳細やコメントの追加があった場合、通知してくれる。
+  - チャットグループに関しても自身がグループに追加されたときや、参加しているグループに新着コメントがあったときなどに通知してくれる。
+- 設定機能
+  - 基本的なユーザー機能の変更やパスワード変更が可能
+  - 通知する種類を選択したり、一言コメントを記入することによって他のユーザーに簡単に伝えたいことを設定することができる。
+- 権限管理機能
+  - タスクを追加削除する権利をもつタスク管理機能
+  - チャットグループを作成削除および変更することが可能なチャットグループ管理機能
+  - 上記二つをどのユーザーに付与させるかを、マスター管理者にて設定可能
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## なぜこのようなシステムをポートフォリオにしたか
+今働いている職場にて進捗管理をエクセルにて行っており、実際に進捗を管理する際の不満や改善点などを把握していたため、作成する際の欲しい機能などの選定がしやすかったため。
+- エクセルにて進捗管理する際の問題点
+  - 誰かがそのエクセルファイルを開いていると、他の人は書き込みができない
+  - 進捗や仕様を確認するファイルなどが分散しているため、確認漏れが増える可能性。また手間も増えてしまう
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+職場において他にサイボウズやMicrosoft teams なども使っているが、それらで用いている機能を集めて実装することで、各情報にアクセスするのがより容易なシステムを作ればよいと思った。
