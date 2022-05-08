@@ -17,12 +17,33 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $member = [
+            'Yamada',
+            'Tanaka',
+            'Suzuki',
+            'Sato',
+            'Kawasaki',
+            'Tanabe',
+            'Tomita',
+            'Hayashi',
+            'Sumida',
+            'Michel',
+            'Bob',
+            'Emi',
+            'Mary',
+            'John',
+            'Jonny',
+            'Chun',
+            'Franky',
+            'Ichinose',
+            'Makino',
+            'Branka',
+        ];
 
-        for ($i=1; $i < 31; $i++) {
+        for ($i=1; $i < 21; $i++) {
             DB::table('users')->insert([
-                'username' => 'test'.$i,
-                'email' => 'test'.$i.'@test',
+                'username' => $member[$i-1],
+                'email' => $member[$i-1].'@mail',
                 'is_chatgroups_admin' => $i % 4 === 1 ? true:false,
                 'is_tasks_admin' => $i % 3 === 1 ? true:false,
                 'is_auth_admin' => $i === 1 ? true:false,

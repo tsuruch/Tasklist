@@ -25,9 +25,9 @@
                 <td><a href="{{ route('tasks.show', $mytask->task) }}">{{ $mytask->task->name }}</a></td>
                 <td >{{ $mytask->task->deadline }}</td>
                 <td class="mytasks processes" id="{{ $mytask->task->id}}_process1" contenteditable="false">{{ $mytask->task->process1 }}</td>
-                <td class="mytasks processes" id="{{ $mytask->task->id}}_process1" contenteditable="false">{{ $mytask->task->process2 }}</td>
-                <td class="mytasks processes" id="{{ $mytask->task->id}}_process1" contenteditable="false">{{ $mytask->task->process3 }}</td>
-                <td class="mytasks processes" id="{{ $mytask->task->id}}_process1" contenteditable="false">{{ $mytask->task->process4 }}</td>
+                <td class="mytasks processes" id="{{ $mytask->task->id}}_process2" contenteditable="false">{{ $mytask->task->process2 }}</td>
+                <td class="mytasks processes" id="{{ $mytask->task->id}}_process3" contenteditable="false">{{ $mytask->task->process3 }}</td>
+                <td class="mytasks processes" id="{{ $mytask->task->id}}_process4" contenteditable="false">{{ $mytask->task->process4 }}</td>
             </tr>
             @endforeach
 

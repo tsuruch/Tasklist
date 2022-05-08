@@ -65,11 +65,12 @@ class TasklistServiceProvider extends ServiceProvider
                 $chatnotifications = Chatnotification::where('user_id', session('user_id'))
                                                         ->whereIn('table_name', $chatnotify)->latest()->limit(5)->get();
 
+
                 $view->with(['tasknotifications'=>$tasknotifications,
                              'chatnotifications'=>$chatnotifications,
                              'is_chatgroups_admin'=>$is_chatgroups_admin,
                              'is_tasks_admin'=>$is_tasks_admin,
-                             'is_auth_admin'=>$is_auth_admin,]);
+                             'is_auth_admin'=>$is_auth_admin]);
        # code...
             }
         });

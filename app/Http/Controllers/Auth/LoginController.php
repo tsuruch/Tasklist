@@ -30,9 +30,17 @@ class LoginController extends Controller
         return view('signup');
     }
 
-
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+    }
 
     public function login(Request $request) {
+
+        $this->validateLogin($request);
 
         $credentials = $request->only(['email', 'password']); //requestからemail,passwordだけ取ってくる。
 
@@ -56,8 +64,8 @@ class LoginController extends Controller
 
             return redirect()->route('tasks.index');
         }
-
-        return redirect()->route('users.loginform');
+        $message = 1;
+        return view('login')->with(['message'=>1]);
     }
 
 
@@ -67,6 +75,7 @@ class LoginController extends Controller
     }
 
     public function signup(UserRequest $request) {
+
         $user = new User;
         $user->username = $request->username;
         $user->email = $request->email;

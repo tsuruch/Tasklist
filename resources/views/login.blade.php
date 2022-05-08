@@ -10,6 +10,12 @@
 <body>
     <div class="form-wrapper">
         <h1>タスク管理システム</h1>
+        <p>このサイトは学習として個人が作成したサイトです!!!</p>
+        @if (isset($message))
+            <p>メールアドレスまたはパスワードが一致しません</p>
+        @else
+            <br>
+        @endif
         <form action="{{ route('users.login') }}" method="post">
             @csrf
           <div class="form-item">

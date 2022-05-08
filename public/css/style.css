@@ -120,8 +120,37 @@ header .inner {
 ---------------------------------------------------------------------------*/
 #contents {
 	clear: both;
-	margin: 3%;	/*ボックスの外側にとる余白*/
+    margin-left: 3%;
+    margin-right: 3%;
 }
+
+#selfnotification_show {
+    background-color: #666;
+    margin-bottom: 1%;
+    padding-left: 3%;
+    color: #fff;
+    visibility: visible;
+    opacity: 1;
+}
+
+#selfnotification_hide {
+    background-color: #666;
+    margin-bottom: 1%;
+    padding-left: 3%;
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transition-delay: 5s;
+    transition-duration: 2s;
+}
+
+#selfnotification_default {
+    margin-bottom: 1%;
+    padding-left: 3%;
+    visibility: hidden;
+}
+
+
 
 /*メインコンテンツ
 ---------------------------------------------------------------------------*/
@@ -162,6 +191,7 @@ header .inner {
     cursor:pointer;
 
 }
+
 #main h3::first-letter {
 	border-left: 3px solid #28a8b8;	/*左側のアクセントラインの幅、線種、色*/
 	padding-left: 10px;
@@ -569,8 +599,6 @@ ul.disc {padding: 0em 25px 1em;list-style: disc;}
 .sh {display: none;}
 .dn {display: none;}
 
-
-
 /*画面幅1200px以上の設定
 ------------------------------------------------------------------------------------------------------------------------------------------------------*/
 @media screen and (min-width:1200px){
@@ -799,11 +827,25 @@ body.s-n #sub {display: none;}
 
 /*チェックボックススクロールボックス*/
 .box {
-    width: 150px;
     height: 200px;
+    width: 50%;
     overflow-y: scroll;
+    padding: 0;
 }
 
+.selected {
+    max-width: 50%
+}
+
+.selected_members {
+    padding-left: 5%;
+}
+
+
+.select_members {
+    display:flex;
+    overflow-wrap: break-word;
+}
 
 .pagination {
     text-align: center;

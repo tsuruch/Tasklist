@@ -15,7 +15,7 @@ class UserSettingSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i < 31; $i++) {
+        for ($i=1; $i < 21; $i++) {
             DB::table('usersettings')->insert([
                 'user_id' => $i,
             ]);

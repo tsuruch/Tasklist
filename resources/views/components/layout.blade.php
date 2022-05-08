@@ -45,7 +45,6 @@ body.is-fixed #contents {padding-top: 0;}
 </div>
 </header>
 
-@if (strpos(url()->current(), 'admin')===false)
 
 <!--大きな端末用（901px以上端末）メニュー-->
 <div class="nav-fix-pos">
@@ -77,19 +76,28 @@ body.is-fixed #contents {padding-top: 0;}
             <li class="{{ url()->current() === route('setting')? "current":""}}"><a href="{{ route('setting') }}">SETTING</a></li>
         </ul>
     </nav>
+    @if (session()->has('selfnotification'))
+        <div id="selfnotification_show">
+        <p id='banner'>{{ session('selfnotification') }}</p>
+        </div>
+        @php
+         session()->forget('selfnotification');
+        @endphp
+        @else
+        <div id="selfnotification_default">
+            <p id='banner'>通知の場所</p>
+        </div>
+        @endif
     <div id="contents">
 
         <div id="main">
-            <h2>{{ $title }}</h2>
-
-
+            <h2 id="title">{{ $title }}</h2>
             {{ $slot }}
         </div>
 
     <!--/main-->
 
     <div id="sub">
-
     <nav>
     <h2 class="bg1">チャット通知</h2>
         <ul class="submenu">
@@ -168,61 +176,5 @@ body.is-fixed #contents {padding-top: 0;}
 
     </body>
     </html>
-
-
-
-
-
-    @else
-
-
-
-
-
-
-
-    <div class="c1" id="contents">
-
-        <div id="main">
-            <h2>{{ $title }}</h2>
-
-
-            {{ $slot }}
-        </div>
-
-    <!--/main-->
-
-
-    <p id="pagetop"><a href="#">↑</a></p>
-
-    <footer>
-    <small>Copyright&copy; <a href="">SAMPLE COMPANY</a> All Rights Reserved.</small>
-    <span class="pr">《<a href="http://template-party.com/" target="_blank">Web Design:Template-Party</a>》</span>
-    </footer>
-
-    </div>
-    <!--/container-->
-
-    <!--お知らせ欄の開閉処理条件　900px以下-->
-    <script type="text/javascript">
-    if (OCwindowWidth() <= 900) {
-        open_close("newinfo_hdr", "newinfo");
-    }
-    </script>
-
-    <!--メニューの３本バー-->
-    <div id="menubar_hdr" class="close"><span></span><span></span><span></span></div>
-    <!--メニューの開閉処理条件設定　900px以下-->
-    <script type="text/javascript">
-    if (OCwindowWidth() <= 900) {
-        open_close("menubar_hdr", "menubar-s");
-    }
-    </script>
-    </body>
-    </html>
-
-
-    @endif
-
 
 

@@ -39,6 +39,8 @@ class ChatgroupController extends Controller
         $create_id = session('user_id');
 
         ChatmanageController::add($group_id, $members, $create_id);
+        $selfnotification = 'チャットグループ：'.$chatgroup->name.'を作成しました';
+        session(['selfnotification'=>$selfnotification]);
         return redirect()->route('chatgroups.index');
     }
 
@@ -75,13 +77,18 @@ class ChatgroupController extends Controller
 
         ChatmanageController::update($group_id, $members, $create_id);
 
+        $selfnotification = 'チャットグループ：'.$chatgroup->name.'を更新しました';
+        session(['selfnotification'=>$selfnotification]);
         return redirect()->route('chatgroups.show', $group_id);
     }
 
     public function destroy ($group_id) {
         $chatgroup = Chatgroup::find($group_id);
+        $chatgroup_name = $chatgroup->name;
         $chatgroup->delete();
 
+        $selfnotification = 'チャットグループ：'.$chatgroup_name.'を削除しました';
+        session(['selfnotification'=>$selfnotification]);
         return redirect()->route('chatgroups.index');
     }
 

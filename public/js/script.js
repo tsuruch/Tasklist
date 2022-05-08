@@ -66,24 +66,34 @@ function Lock_onoff_mytasks(obj, current_path, category) {
 
 //ページの読み込みが終わるのを待つ
 window.addEventListener("load", function(){
-    let processes = document.getElementsByClassName("processes");
-    for (let i = 0; i < processes.length; i++) {
-        let process = processes[i];
-        process.addEventListener("keypress",function(event){
-            //Enterを押すと、そのデフォルト操作（改行）を中止して、フォーカスを外す
-            //さらに、Input hidddenに更新したい値を埋め込み、formにて送信
-            if (event.key === "Enter") {
-                event.preventDefault();
-                process.blur();
-                document.getElementById("taskid_processname").value = process.id;
-                document.getElementById("input_value").value = process.textContent;
-                document.mytasks_form.submit();
-                console.log(document.getElementById("taskid_processname"));
-                console.log(document.getElementById("input_value"));
-            }else{
-                //console.log(event.key)
-            }
-         });
+
+
+    if(document.getElementById('banner').textContent != '通知の場所'){
+        let block = document.getElementById('selfnotification_show');
+        block.id = 'selfnotification_hide';
+    }
+
+    if (document.getElementById("title").textContent == 'Home'){
+        let processes = document.getElementsByClassName("processes");
+        for (let i = 0; i < processes.length; i++) {
+            let process = processes[i];
+            process.addEventListener("keypress",function(event){
+                //Enterを押すと、そのデフォルト操作（改行）を中止して、フォーカスを外す
+                //さらに、Input hidddenに更新したい値を埋め込み、formにて送信
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    process.blur();
+                    document.getElementById("taskid_processname").value = process.id;
+                    document.getElementById("input_value").value = process.textContent;
+                    document.mytasks_form.submit();
+                    console.log(document.getElementById("taskid_processname"));
+                    console.log(document.getElementById("input_value"));
+                }else{
+                    //console.log(event.key)
+                }
+             });
+        }
+
     }
 
     //editor.addEventListener("input",function(){

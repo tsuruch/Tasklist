@@ -82,7 +82,8 @@ class TaskController extends Controller
         $task->deadline = $request->deadline;
         $task->detail = $request->detail;
         $task->save();
-
+        $selfnotification = 'タスク：'.$task->name.'を作成しました';
+        session(['selfnotification'=>$selfnotification]);
 
         return redirect()->route('tasks.index');
     }
@@ -102,13 +103,16 @@ class TaskController extends Controller
         $task->process4 = $request->process4;
         $task->detail = $request->detail;
         $task->save();
-
+        $selfnotification = $task->name.'の内容を更新しました';
+        session(['selfnotification'=>$selfnotification]);
         return redirect()->route('tasks.show', $task);
     }
 
     public function destroy(Task $task) {
+        $task_name = $task->name;
         $task->delete();
-
+        $selfnotification = 'タスク：'.$task_name.'を削除しました';
+        session(['selfnotification'=>$selfnotification]);
         return redirect()->route('tasks.index');
     }
 
@@ -129,6 +133,8 @@ class TaskController extends Controller
         $task = Task::find($task_id);
         $task->$processname = $input_value;
         $task->save();
+        $selfnotification = $task->name.'の進捗を更新しました';
+        session(['selfnotification'=>$selfnotification]);
         return back();
     }
 

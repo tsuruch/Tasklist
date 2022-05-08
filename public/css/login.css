@@ -7,6 +7,11 @@
   font-family: 'FontAwesome', sans-serif;
 }
 
+input{
+    -webkit-appearance: none;
+}
+
+
 /* Simple Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -28,6 +33,10 @@ body {
 h1 {
   text-align: center;
   padding: 1em 0;
+}
+
+span {
+    text-align: center;
 }
 
 h3{

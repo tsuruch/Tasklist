@@ -27,7 +27,10 @@ class UserController extends Controller
         session(['api_token' => $user->api_token,
                 'username' => $user->username,
                 'user_id' => $user->id,
-    ]);
+            ]);
+        $selfnotification = '個人情報を更新しました';
+        session(['selfnotification'=>$selfnotification]);
+
         return back();
     }
 
@@ -44,7 +47,11 @@ class UserController extends Controller
         session(['api_token' => $user->api_token,
                 'username' => $user->username,
                 'user_id' => $user->id,
-    ]);
+            ]);
+
+        $selfnotification = 'パスワードを更新しました';
+        session(['selfnotification'=>$selfnotification]);
+
         return back();
 
     }

@@ -20,7 +20,8 @@ class MytaskController extends Controller
         $mytask->task_id = $task->id;
         $mytask->user_id = $request->user_id;
         $mytask->save();
-
+        $selfnotification = $task->name.'をマイタスクに追加しました';
+        session(['selfnotification'=>$selfnotification]);
         return back();
     }
 
@@ -32,7 +33,8 @@ class MytaskController extends Controller
 
         $mytask = Mytask::find($findtask);
         $mytask->delete();
-
+        $selfnotification = $task->name.'をマイタスクから削除しました';
+        session(['selfnotification'=>$selfnotification]);
         return back();
     }
 }

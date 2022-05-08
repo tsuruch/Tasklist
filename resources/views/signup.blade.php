@@ -10,6 +10,7 @@
 <body>
     <div class="form-wrapper">
         <h1>アカウントを作成する</h1>
+        <p>メールを送信し、アカウント作成の承認を受ける</p>
         <form action="{{ route('users.signup') }}" method="post">
             @csrf
             <div class="form-item">
@@ -39,7 +40,7 @@
                 <input type="password" name="password_confirmation" placeholder="確認用パスワード">
             </div>
             <div class="button-panel">
-                <input type="submit" class="button" title="Sign Up" value="Sign Up">
+                <input type="submit" class="button" title="メールを送信" value="メールを送信">
             </div>
         </form>
         <div class="form-footer">

@@ -51,6 +51,8 @@ class SettingController extends Controller
         $usersetting->onecomment = $request->onecomment;
         $usersetting->save();
 
+        $selfnotification = 'その他の設定を更新しました';
+        session(['selfnotification'=>$selfnotification]);
         return back();
     }
 

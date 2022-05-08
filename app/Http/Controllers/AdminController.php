@@ -27,10 +27,14 @@ class AdminController extends Controller
         if ($request->has($admin)) {
             $user->$admin = true;
             $user->save();
+            $selfnotification = $user->username.'の権限を変更しました';
+            session(['selfnotification'=>$selfnotification]);
             return back();
         } else {
             $user->$admin = false;
             $user->save();
+            $selfnotification = $user->username.'の権限を変更しました';
+            session(['selfnotification'=>$selfnotification]);
             return back();
         }
 

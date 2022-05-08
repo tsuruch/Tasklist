@@ -16,18 +16,23 @@
                 <tr>
                     <th>メンバー</th>
                     <td>
-                        <div class="box">
-                            @foreach ($users as $user)
-                                <input type="checkbox" name="members[]" value="{{$user->id}}" onclick="Displaymember(event, {{$user->id}})">{{ $user->username}}
-                                <br>
-                            @endforeach
+                        <div class="select_members">
+                            <div class="box selecting_members">
+                                @foreach ($users as $user)
+                                    <input type="checkbox" name="members[]" value="{{$user->id}}" onclick="Displaymember(event, {{$user->id}})">{{ $user->username}}
+                                    <br>
+                                @endforeach
+                            </div>
+                            <div class="box selected">
+                                    @foreach ($users as $user)
+                                    <div id="{{$user->id}}" class="selected_members" style="display: none">{{ $user->username}}</div>
+                                    @endforeach
+                            </div>
                         </div>
                         @error('members')
                         <div class="error">{{ $message }}</div>
                         @enderror
-                        @foreach ($users as $user)
-                        <span id="{{$user->id}}" style="display: none">{{ $user->username}}</span>
-                    @endforeach
+
                     </td>
                 </tr>
             </table>

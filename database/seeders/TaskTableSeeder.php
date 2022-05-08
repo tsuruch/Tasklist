@@ -38,6 +38,17 @@ class TaskTableSeeder extends Seeder
             'Emi',
             'Mary',
             'John',
+            'Jonny',
+            'Chun',
+            'Franky',
+            'Ichinose',
+            'Makino',
+            'Branka',
+            '',
+            '',
+            '',
+            '',
+            '',
             '',
             '',
             '',
@@ -51,7 +62,7 @@ class TaskTableSeeder extends Seeder
         for ($i=1; $i <31 ; $i++) {
             $row = [];
             $row['name'] = 'project'.$i;
-            $row['deadline'] = '2022/'.rand(1, 12).'/'.rand(1, 28);
+            $row['deadline'] = '2022/'.rand(6, 12).'/'.rand(1, 28);
             for ($j=1; $j < 5; $j++) {
                 $row['process'.$j] = $member[rand(0, count($member)-1)];
                 if ($row['process'.$j]==='') {

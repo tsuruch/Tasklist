@@ -18,17 +18,26 @@
                 <tr>
                     <th>メンバー</th>
                     <td>
-                        <div class="box">
-                            @foreach ($all_users as $user)
-                                <input type="checkbox" name="members[]" value="{{$user->id}}" {{
-                                        in_array($user->id, $in_users, true) ? "checked": ""}} >{{ $user->username}}
-                                <br>
-                            @endforeach
+                        <div class="select_members">
+                            <div class="box selecting_members">
+                                @foreach ($all_users as $user)
+                                    <input type="checkbox" name="members[]" value="{{$user->id}}" {{
+                                            in_array($user->id, $in_users, true) ? "checked": ""}}
+                                            onclick="Displaymember(event, {{$user->id}})">{{ $user->username}}
+                                    <br>
+                                @endforeach
+                            </div>
+                            <div class="box selected">
+                                @foreach ($all_users as $user)
+                                <div id="{{$user->id}}" class="selected_members" style="display: {{
+                                 in_array($user->id, $in_users, true) ? "": "none"}}">{{ $user->username}}</div>
+                                @endforeach
+                            </div>
+
                         </div>
                         @error('members')
                         <div class="error">{{ $message }}</div>
                         @enderror
-                        <p>右側にはチェックボックスで選択した人を表示する</p>
                     </td>
                 </tr>
             </table>
