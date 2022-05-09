@@ -4,6 +4,7 @@
     </x-slot>
     <form action="{{ route('tasks.store') }}" method="post" class="form-group">
         @csrf
+        <div class="table-wrap">
             <table class="ta1 mb1em">
                 <tr>
                     <th>タスク名</th>
@@ -31,6 +32,8 @@
                     </td>
                 </tr>
             </table>
+
+        </div>
             <div class="c">
                 <input type="submit" value="送信する" class="btn" />
             </div>

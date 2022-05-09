@@ -80,7 +80,6 @@ class LoginController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->is_admin = false;
         $user->api_token = Str::random(60);
         $user->save();
 

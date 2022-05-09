@@ -2,26 +2,29 @@
     <x-slot name="title">
         {{ $task->name }}
     </x-slot>
-    <table class="ta1">
-        <tr>
-            <th class="tamidashi">タスク名</th>
-            <th class="tamidashi">納品日</th>
-            <th class="tamidashi">工程1</th>
-            <th class="tamidashi">工程2</th>
-            <th class="tamidashi">工程3</th>
-            <th class="tamidashi">工程4</th>
-        </tr>
-        <tr>
-            <td>{{ $task->name }}
-                <a href="{{ route('tasks.edit', $task) }}">更新</a>
-            </td>
-            <td>{{ $task->deadline }}</td>
-            <td>{{ $task->process1 }}</td>
-            <td>{{ $task->process2 }}</td>
-            <td>{{ $task->process3 }}</td>
-            <td>{{ $task->process4 }}</td>
-        </tr>
-    </table>
+    <div class="table-wrap">
+        <table class="ta1">
+            <tr>
+                <th class="tamidashi">タスク名</th>
+                <th class="tamidashi">納品日</th>
+                <th class="tamidashi">工程1</th>
+                <th class="tamidashi">工程2</th>
+                <th class="tamidashi">工程3</th>
+                <th class="tamidashi">工程4</th>
+            </tr>
+            <tr>
+                <td>{{ $task->name }}
+                    <a href="{{ route('tasks.edit', $task) }}">更新</a>
+                </td>
+                <td>{{ $task->deadline }}</td>
+                <td>{{ $task->process1 }}</td>
+                <td>{{ $task->process2 }}</td>
+                <td>{{ $task->process3 }}</td>
+                <td>{{ $task->process4 }}</td>
+            </tr>
+        </table>
+
+    </div>
 
 
 @if (!$mytask_judge)
