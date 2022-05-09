@@ -2,7 +2,6 @@
     <x-slot name="title">
         Members
     </x-slot>
-    <h3>ユーザー追加</h3>
     <div class="table-wrap">
         <table class="ta1">
             <tr>

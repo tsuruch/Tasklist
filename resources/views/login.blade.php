@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>ログイン - 進捗管理システム</title>
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
     <div class="form-wrapper">
-        <h1>タスク管理システム</h1>
-        <p>このサイトは学習として個人が作成したサイトです!!!</p>
+        <h1>進捗管理システム</h1>
+        <p>このサイトは学習として個人が作成したサイトです!!!絶対に個人情報は入力しないでください!!!</p>
         @if (isset($message))
             <p>メールアドレスまたはパスワードが一致しません</p>
         @else

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>{{ $title }}-進捗管理アプリ</title>
+<title>{{ $title }}-進捗管理システム</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="ここにサイト説明を入れます">
 <meta name="keywords" content="キーワード１,キーワード２,キーワード３,キーワード４,キーワード５">
@@ -30,8 +30,8 @@ body.is-fixed #contents {padding-top: 0;}
 
 <header>
 <div class="inner">
-<h1><a id="apptitle" href="{{ route('tasks.index') }}">進捗管理アプリ</a></h1>
-<span>{{ session('username', 'ゲスト')}}</span>
+<h1><a id="apptitle" href="{{ route('tasks.index') }}">進捗管理システム</a></h1>
+<span>{{ session('username', 'ゲスト')}}さんこんにちは!</span>
 <ul id="h-nav">
     @if ($is_auth_admin)
         <a href="{{ route('admin') }}">管理者用ページ</a>
