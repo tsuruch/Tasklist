@@ -36,7 +36,8 @@ class TasklistServiceProvider extends ServiceProvider
             if (strpos(url()->current(), 'log')==false &&
                 strpos(url()->current(), 'signup')==false &&
                 strpos(url()->current(), 'forgot')==false &&
-                strpos(url()->current(), 'reset')==false) {
+                strpos(url()->current(), 'reset')==false &&
+                strpos(url()->current(), 'pusher')==false) {
                 $user = User::find(session('user_id'));
                 $usersetting = $user->usersetting;
                 $is_chatgroups_admin = $user->is_chatgroups_admin;

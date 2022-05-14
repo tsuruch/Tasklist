@@ -48,7 +48,7 @@ class ChatgroupController extends Controller
     public function show($group_id) {
         $chatgroup = Chatgroup::find($group_id);
         $chatgroup_tousers = Chatgroup::where('id', $group_id)->with(['chatmanages.user'])->get();
-        $chats = Chat::where('group_id', $chatgroup->id)->get();
+        $chats = Chat::where('group_id', $chatgroup->id)->oldest()->get();
         return view('chats.show')
                 ->with(['chats'=> $chats, 'chatgroup'=>$chatgroup, 'chatgroup_tousers'=>$chatgroup_tousers]);
     }

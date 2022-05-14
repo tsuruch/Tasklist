@@ -48,6 +48,10 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function chats() {
+        return $this->hasMany(Chat::class);
+    }
+
     public function chatmanages() {
         return $this->hasMany(Chatmanage::class);
     }

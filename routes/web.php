@@ -12,6 +12,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use GuzzleHttp\Middleware;
+use App\Events\MyEvent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -159,3 +160,13 @@ Route::patch('/admin/{user_id}/update', [AdminController::class, 'update'])
 
 Route::patch('tasks/processupdate', [TaskController::class, 'processupdate'])
     ->name('tasks.processupdate');
+
+/*
+Route::get('/pusher', function(){
+    return view('pusher-index');
+});
+
+Route::get('pusher/test', function(){
+    return ['message' => 'send to message : hello worl'];
+});
+*/
