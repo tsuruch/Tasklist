@@ -13,7 +13,13 @@
         channel.bind("my-event", function(data) {
         let chat = data.push_chat;
         /*直近のチャットのIDを取得して、今回反映させるチャットの連番を生成*/
-        let number = Number(document.getElementById("chatlog").children[0].id) + 1
+        console.log(document.getElementById("chatlog").children.length);
+        /*まだチャットがない時は1を通し番号として挿入*/
+        if(document.getElementById("chatlog").children.length == 0) {
+            var number = 1;
+        }else{
+            var number = Number(document.getElementById("chatlog").children[0].id) + 1
+        }
         console.log(document.getElementById("chatlog").children[0]);
         let chatlog = document.getElementById("chatlog");
         let table = document.createElement("table");
@@ -32,7 +38,6 @@
         tr2.appendChild(td);
         table.appendChild(tr2);
         chatlog.prepend(table);
-
         });
 
     </script>
