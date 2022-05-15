@@ -146,3 +146,18 @@ Link:(http://35.78.92.128)
 </details>
 
 ---
+
+## 更新履歴＆メモ
+<details>
+
+### 5/15 リアルタイムチャット実装　＆　本番環境エラー修正
+リアルタイムチャット実装  
+pusherを使いリアルタイムでチャットが更新される機能を実装。  
+開いているチャットが更新されると、pusherからリクエストを受け取る。リクエストを受け取るとjsで更新されたチャットを表示する。  
+  
+本番環境エラー修正  
+Call to undefined function: mb_strimwidth()
+サーバー環境においてこのエラーが発生した。
+php.ini においてmbstringで日本語環境として設定していなかったから。  
+参考URL:https://hacknote.jp/archives/57628/
+</details>
